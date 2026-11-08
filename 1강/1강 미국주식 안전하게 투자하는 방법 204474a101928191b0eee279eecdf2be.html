@@ -1,0 +1,836 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>1강  미국주식 안전하게 투자하는 방법</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+	/* Paint a complete callout box on every PDF page fragment. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="204474a1-0192-8191-b0ee-e279eecdf2be" class="page sans"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/nasa_buzz_aldrin_on_the_moon.jpg" style="object-position:center 7.2899999999999965%"/><h1 class="page-title" dir="auto">1강  미국주식 안전하게 투자하는 방법</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://app.notion.com/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Created</th><td><time datetime="2025-05-31T18:07">May 31, 2025 6:07 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://app.notion.com/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><p id="277474a1-0192-8052-b6f4-f98ebb65fc47" class="" dir="auto">
+</p><figure id="24d474a1-0192-80f1-a523-dfdec4fc3afe" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg"><img style="width:709.9857788085938px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg"/></a></figure><h1 id="204474a1-0192-804d-82b6-e940a391df43" class="" dir="auto">1강   미국주식 <mark class="highlight-blue" data-notion-highlight="blue">안전하게</mark><mark class="highlight-red" data-notion-highlight="red"> </mark>투자하는 방법</h1><p id="39c474a1-0192-8003-85c3-f6cba4594920" class="" dir="auto">
+</p><h2 id="39c474a1-0192-800b-b157-dd7e9d4b50af" class="" dir="auto"><mark class="highlight-default" data-notion-highlight="default"><strong>Part 1. 주식 투자가 위험하다는 착각</strong></mark></h2><h3 id="39c474a1-0192-8095-b8db-f91184f4f8d9" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">주식 투자를 두려워 하는 이유</mark></h3><ol type="1" id="249474a1-0192-801f-8309-fc2b827c418a" class="numbered-list" start="1" dir="auto"><li><strong>가격 변동성의 압박</strong><ul id="249474a1-0192-80e9-a98b-f48a5ae8e4b8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">하루에도 수차례 오르내려 불안감이 커진다.</li></ul></li></ol><ol type="1" id="24d474a1-0192-80b0-ac43-cf95855e65ab" class="numbered-list" start="2" dir="auto"><li><strong>조급함과 하락 공포</strong><ul id="24d474a1-0192-8033-aa29-c620fc7f10f8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">단기간 수익을 기대하다가 조금만 떨어져도 실망하고 겁난다.</li></ul><ul id="24d474a1-0192-8044-b343-ce5ee62713d4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">하락하면 곧바로 ‘잃었다’는 생각이 든다.</li></ul></li></ol><ol type="1" id="249474a1-0192-80eb-b978-c75a273ec0d9" class="numbered-list" start="3" dir="auto"><li><strong>지식 부족, 정보 과잉</strong><ul id="249474a1-0192-809b-9a8b-d09d4fe0ae3e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">경제 용어는 어렵고, 뉴스·유튜브 등 정보가 너무 많아 혼란스럽다.</li></ul></li></ol><ol type="1" id="249474a1-0192-801b-95bb-d6106e0e381a" class="numbered-list" start="4" dir="auto"><li><strong>부정적 사례의 확대 인식</strong><ul id="249474a1-0192-806a-8f75-cfeea370b3ae" class="bulleted-list" dir="auto"><li style="list-style-type:disc">실패 이야기는 크게 들리고, 성공은 잘 보이지 않는다.</li></ul></li></ol><ol type="1" id="249474a1-0192-80b4-9967-ca349b42100d" class="numbered-list" start="5" dir="auto"><li><strong>주변의 성공 사례 부재</strong><ul id="249474a1-0192-80e1-8d3b-cbbeb7bec32e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">실제로 성공한 투자자를 보지 못해 더 위험하게 느껴진다</li></ul></li></ol><p id="24c474a1-0192-8022-9a02-d29ba0480906" class="" dir="auto">
+</p><p id="20d474a1-0192-80cb-ac95-c5f30b0e076e" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>단기적인 </strong></mark><mark class="highlight-default" data-notion-highlight="default"><strong>성공의 불확실성</strong></mark><mark class="highlight-default" data-notion-highlight="default">과 </mark><mark class="highlight-default" data-notion-highlight="default"><strong>실패의 공포</strong></mark><mark class="highlight-default" data-notion-highlight="default">에서 온다.</mark></p><p id="24c474a1-0192-806e-a55e-c71857701b30" class="" dir="auto">누군가는 주식 투자로 자산을 키워가는데,</p><p id="24c474a1-0192-8061-ae2e-f164e664ec0d" class="" dir="auto">공포 때문에 안 할 것인가?</p><p id="20d474a1-0192-8089-8250-c3a08f9d73d3" class="" dir="auto">
+</p><h3 id="204474a1-0192-8069-b54a-e15df251eb8a" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">주식 투자가 위험한 진짜 이유</mark></h3><ol type="1" id="249474a1-0192-809c-9347-dcd4b06640c1" class="numbered-list" start="1" dir="auto"><li><strong>비싸게 사서 싸게 팔면 손해<br/></strong>→ 가격 변동이 큰 것은 위험의 본질이 아님.<br/></li></ol><ol type="1" id="204474a1-0192-806a-a2ae-fe63042ccb79" class="numbered-list" start="2" dir="auto"><li><strong>몰빵 / 단타 투자로 예상할 수 없는 확률에 투자</strong><p id="204474a1-0192-80fd-984a-ecaf0a3061d8" class="" dir="auto">→ 한 종목에 큰 금액을 걸거나 단기 차익만 노리면 리스크 큼.</p><p id="20d474a1-0192-80f4-90af-db2fe3f42fe7" class="" dir="auto">
+</p></li></ol><ol type="1" id="249474a1-0192-808e-bee7-e161b9b06d01" class="numbered-list" start="3" dir="auto"><li><strong>공포와 욕심에 의한 감정 투자에 쉽게 휘둘림</strong><br/></li></ol><ol type="1" id="204474a1-0192-8053-8fe1-ee5920d38f27" class="numbered-list" start="4" dir="auto"><li><strong>정보 부족, 잘못된 정보 과다 노출</strong><p id="204474a1-0192-80b4-bc1c-e32ed4479a5a" class="" dir="auto">→ 기업 분석, 시장 흐름 이해 없이 투자하면 실패 확률↑</p><p id="22f474a1-0192-80d1-9922-cddccffa2b01" class="" dir="auto">→ 유튜브, 커뮤니티 등에서 떠도는 ‘루머’나 ‘급등주’에 휘말림</p><p id="20d474a1-0192-8022-ac8c-c6151b065169" class="" dir="auto">
+</p></li></ol><h3 id="204474a1-0192-8069-802c-c5dc6040688f" class="" dir="auto">즉, 주식 자체가 위험한 것이 아니라 ‘<mark class="highlight-red" data-notion-highlight="red">잘못된 투자 방식</mark>’이 위험한 것!</h3><h3 id="204474a1-0192-8007-895d-c65f2073e69c" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">잘못된 투자방식을 모두 제거하면 안전하다.</mark></h3><p id="22f474a1-0192-804a-89a7-c5ccf98d869e" class="" dir="auto">
+</p><p id="204474a1-0192-80ee-a9e7-f3307465b0f3" class="" dir="auto">문제 1. 비싸게 사서 싸게 파는 위험, 2. 몰빵 / 단타 투자의 위험<strong><br/>            → ① 장기 우상향에 투자</strong></p><p id="205474a1-0192-80c1-8f04-ddb196a629f2" class="" dir="auto">문제 3. 공포와 욕심에 의한 감정적 투자<br/><strong>            → ② 감정을 통제</strong></p><p id="22f474a1-0192-8086-89f1-fc04c30c4a4d" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">해결책. 올바른 마인드와 행동</mark></p><p id="22f474a1-0192-80b8-8344-e85ac907da9e" class="" dir="auto">
+</p><p id="205474a1-0192-8087-87e7-e7c1646b2e85" class="" dir="auto">문제 4. 정보 부족, 잘못된 정보 과다노출<br/><strong>            → ③ 정확한 정보를 찾을 수 있을까? 오히려, 정보가 필요없는 투자!!</strong></p><p id="22f474a1-0192-80e9-965c-e771d440f66e" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">해결책. 올바른 마인드와 행동만으로 부족, 그러면?</mark></p><p id="39c474a1-0192-8027-b4ca-f9c757976db2" class="" dir="auto">
+</p><h4 id="204474a1-0192-80f1-a9b2-ef8bb9ba8249" class="" dir="auto">이 모든것을 해결해주는 건강한 주식 투자 핵심  (⭐️⭐️⭐️⭐️⭐️ 별 5개)</h4><h4 id="204474a1-0192-8099-9ca1-e3bf5d0d605b" class="" dir="auto"><mark class="highlight-blue" data-notion-highlight="blue"><strong>장기 우상향 하는 우량 주식자산, 미국종합주가지수 ETF를 사 모으는 것!</strong></mark></h4><p id="3a4474a1-0192-8009-9fa9-e7594758d822" class="" dir="auto">
+</p><p id="204474a1-0192-80c6-b97b-ec97f3d1d846" class="" dir="auto">
+</p><h2 id="22f474a1-0192-8056-896e-e492befe3c0f" class="" dir="auto"><mark class="highlight-default" data-notion-highlight="default"><strong>Part 2. 왜 미국 주식인가?</strong></mark></h2><h3 id="20d474a1-0192-8095-a4c2-ec2b922d97fd" class="" dir="auto">장기 우상향 하는 자산, 미국 종합주가지수 ETF</h3><p id="20d474a1-0192-806a-aa5d-c7c5e6f72e81" class="" dir="auto">
+</p><p id="20d474a1-0192-80f7-868d-ea34d080eb82" class="" dir="auto">미국은 기축통화 패권 국가</p><p id="20d474a1-0192-8088-abf7-ddf352a9830a" class="" dir="auto">미국 1위 기업 vs 한국 주식시장 시가총액 비교(2026년 6월 기준)</p><table id="20d474a1-0192-808e-803d-ce430eb16ace" class="simple-table" dir="ltr"><tbody><tr id="20d474a1-0192-80f1-9890-cd8c1277c543" dir="ltr"><td id="U&gt;it" class="" style="width:354.5596618652344px">구분</td><td id="jtH^" class="">시가총액 (USD)</td></tr><tr id="20d474a1-0192-80f8-90d7-d85f67a83848" dir="ltr"><td id="U&gt;it" class="" style="width:354.5596618652344px"><strong>미국 1위 기업</strong>: Nvidia</td><td id="jtH^" class=""><strong>5.21조 달러</strong></td></tr><tr id="20d474a1-0192-80e9-bef4-ed3c770cde6b" dir="ltr"><td id="U&gt;it" class="" style="width:354.5596618652344px"><strong>미국 2위 기업</strong>: Alphabet</td><td id="jtH^" class=""><strong>4.59조 달러</strong></td></tr><tr id="36a474a1-0192-80be-b9ea-c9d1f1b9c8da" dir="ltr"><td id="U&gt;it" class="" style="width:354.5596618652344px"><strong>한국 주식시장 전체</strong>(KOSPI+KOSDAQ, 2025년 11월 기준)</td><td id="jtH^" class=""><strong>7.07조 달러</strong></td></tr></tbody></table><ul id="20d474a1-0192-80d9-8c48-f100e116083a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">2025년 11월, Nvidia(약 1.78배) &gt; 한국 시장 전체<br/>2026년 6월, 최근 한국주식 시장 성장으로 역전!! Nvidia</li></ul><ul id="20d474a1-0192-8029-9690-f2014d398513" class="bulleted-list" dir="auto"><li style="list-style-type:disc">현재 미국 1, 2위 기업의 가치가 대한민국 주식시장 압도</li></ul><p id="3a4474a1-0192-807c-8ab5-cb3ddc27b4b2" class="" dir="auto">
+</p><p id="3a4474a1-0192-8039-b6ee-f44708898143" class="" dir="auto">
+</p><h2 id="36b474a1-0192-8005-9fab-e24bf482c82c" class="" dir="auto"><mark class="highlight-default" data-notion-highlight="default"><strong>Part 3. 미국 ETF 제대로 이해하기</strong></mark></h2><h3 id="204474a1-0192-808f-9551-df116c4a9030" class="" dir="auto">우리가 선택할 ETF는 주식을 쉽고 안전하게 해주는 도구<br/></h3><h3 id="204474a1-0192-803e-b388-d8e25c12e631" class="" dir="auto">ETF란?</h3><blockquote id="204474a1-0192-80f0-b1d2-efe173458e77" class="" dir="auto">Exchange Traded Fund (상장지수펀드)</blockquote><ul id="204474a1-0192-808e-ac20-f435185df0ec" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>‘지수를 추종하는 펀드’를 주식처럼 거래할 수 있게 만든 상품</strong></li></ul><ul id="205474a1-0192-8028-8e37-d27890231ca7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">지수를 <strong>거의 똑같이 따라가도록</strong> 설계됨<br/>예: S&amp;P500, 나스닥100 등 특정 지수나 테마를 따라감</li></ul><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="/icons/dialogue_gray.svg" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="36a474a1-0192-80d9-97e8-e15dcfb15b2c" dir="ltr"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://app.notion.com/icons/dialogue_gray.svg"/></div><div style="width:100%"><h3 id="36a474a1-0192-8022-a68e-d3ac080df3bf" class="" dir="auto">ETF 수익률과 괴리율</h3><ul id="36a474a1-0192-80a3-91fa-c7861a6b1526" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ETF·인덱스펀드 = 지수 수익률 추종 → 지수 +2% = ETF도 약 +2%</li></ul><ul id="36a474a1-0192-8048-a641-f3a675b45607" class="bulleted-list" dir="auto"><li style="list-style-type:disc">지수 구성 종목·비중 자동 반영</li></ul><ul id="36a474a1-0192-8080-994e-db10dc2f8ab3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ETF는 실시간 거래 → 시장가격과 NAV 차이 발생 가능→ 이를 ‘괴리율’이라고 함<br/>- <strong>괴리율 =</strong> ETF 시장가 ↔ 순자산가치(NAV) 차이<br/>- 고평가(시장가 &gt; NAV)→ AP(지정참가회사)가 ETF 추가 발행·공급→ 가격 하락 → 괴리율 축소<br/>- 저평가(시장가 &lt; NAV)→ AP가 ETF 매수·해지 후 환매→ 가격 상승 → 괴리율 축소</li></ul><ul id="36a474a1-0192-802b-83d2-cc2ea36e8a27" class="bulleted-list" dir="auto"><li style="list-style-type:disc">차익거래 구조 덕분에 ETF 가격은 지수와 유사하게 유지</li></ul><ul id="36a474a1-0192-80cf-91e1-f5f2870b63e8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">핵심: 유동성 높은 ETF 선택 중요</li></ul></div></aside><p id="36a474a1-0192-806d-ac86-fab15de423c3" class="" dir="auto">
+</p><h3 id="204474a1-0192-80fb-828c-e92430308fb8" class="" dir="auto">ETF의 주요 특징</h3><p id="22f474a1-0192-800f-b075-e49c6d91f38e" class="" dir="auto">1. <strong>지수 추종</strong></p><ul id="22f474a1-0192-800a-ad99-e195b842c533" class="bulleted-list" dir="auto"><li style="list-style-type:disc">장점: 시장 평균(S&amp;P500, 나스닥100 지수 등) 수익률 확보<br/>         종목 분석 없이도 안정적인 수익 가능 → <strong>초보자에게 적합</strong></li></ul><ul id="22f474a1-0192-80ae-baee-d6f0042da783" class="bulleted-list" dir="auto"><li style="list-style-type:disc">단점: 급등주처럼 <strong>초과 수익 내기 어려움</strong></li></ul><p id="22f474a1-0192-80a2-8cd0-f7d87c23cc8c" class="" dir="auto">2. <strong>분산 투자</strong></p><ul id="22f474a1-0192-8058-8a6d-fbff85487d10" class="bulleted-list" dir="auto"><li style="list-style-type:disc">장점: ETF 하나에 수십~수백 종목 포함 → <strong>리스크 분산<br/>         </strong>특정 기업 부실에도 전체 자산 영향 작음</li></ul><p id="22f474a1-0192-80be-96f3-da0dcb3ea3aa" class="" dir="auto">3. <strong>소액 투자 가능</strong></p><ul id="22f474a1-0192-8039-89af-d8047a4516ac" class="bulleted-list" dir="auto"><li style="list-style-type:disc">장점: <strong>한 주 단위로 소액 투자 가능</strong> (몇 천 원~수만 원)<br/>         월급으로 <strong>자동 적립식 투자</strong>에 유리</li></ul><p id="22f474a1-0192-80f1-93e1-d17a417e22fe" class="" dir="auto">4. <strong>운용사 관리 &amp; 수수료 존재</strong></p><ul id="22f474a1-0192-804f-9b68-f44bacf08bfb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">장점: 전문가가 포트폴리오 구성 및 리밸런싱 자동 관리<br/>        투자자가 기업 분석에 신경 쓸 필요 없음</li></ul><ul id="22f474a1-0192-8004-ba4d-d91a6e5e1a81" class="bulleted-list" dir="auto"><li style="list-style-type:disc">단점: 소액이지만 <strong>운용 보수(0.03~0.5%) 발생<br/>         </strong>장기적으로는 수익률에 복리 영향 가능성 있음</li></ul><p id="22f474a1-0192-804d-9da7-e38ed8ca6dbe" class="" dir="auto">5. <strong>유동성 낮은 ETF 주의</strong></p><ul id="22f474a1-0192-80b7-972e-fcf085f108b3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">단점: 거래량 적은 ETF는 매매가 원활하지 않을 수 있음<br/>         <strong>유명하고 거래 많은 ETF 선택이 중요</strong></li></ul><p id="20d474a1-0192-8098-b684-f43e2ea32cd4" class="" dir="auto">
+</p><h3 id="204474a1-0192-8050-9a4e-fa9852ae23e2" class="" dir="auto">군인<strong>(개인투자자)</strong> ETF 투자 추천!</h3><p id="204474a1-0192-80f7-8c71-d23d52c49075" class="" dir="auto">✔️ <strong>개별 종목 분석이 필요 없음.</strong></p><p id="204474a1-0192-8022-84ba-e1cbba309118" class="" dir="auto">✔️ 소액으로 <strong>분산 투자 가능</strong></p><p id="204474a1-0192-8067-b3e3-f045e408b766" class="" dir="auto">✔️ 바쁜 군 복무 중에도 <strong>꾸준히 투자 가능</strong></p><p id="204474a1-0192-8063-9817-e39bc3a5facf" class="" dir="auto">✔️ <strong>장기적으로 안정적인 수익률 가능</strong></p><p id="3a4474a1-0192-80a0-adce-ee6bc09d8fde" class="" dir="auto">
+</p><h3 id="204474a1-0192-805a-bfa6-ffdbd59281cb" class="" dir="auto">🇺🇸 미국 대표 3대 지수추종 ETF</h3><table id="204474a1-0192-8049-9563-ec44a3f06765" class="simple-table" dir="ltr"><tbody><tr id="204474a1-0192-8082-ad4f-c39d83163b6b" dir="ltr"><td id=":JS&gt;" class="">지수</td><td id="^goQ" class="">구성</td><td id="N[zX" class="">특징</td><td id="sE;b" class="">대표 ETF</td></tr><tr id="204474a1-0192-808f-934e-c28d6af04e2b" dir="ltr"><td id=":JS&gt;" class=""><strong>S&amp;P500</strong></td><td id="^goQ" class="">미국 상위 500대 기업</td><td id="N[zX" class="">미국 전체 시장 흐름 대표,<br/>가장 많이 쓰이는 벤치마크 지수</td><td id="sE;b" class="">SPY, IVV, VOO,<br/>SPYM</td></tr><tr id="204474a1-0192-803f-a8ea-f26770aa716c" dir="ltr"><td id=":JS&gt;" class=""><strong>나스닥100</strong></td><td id="^goQ" class="">나스닥 상장 비금융 대형주 100개</td><td id="N[zX" class="">애플, 테슬라, 마이크로소프트 등 기술주 중심성장주 비중 높고 변동성 큼</td><td id="sE;b" class="">QQQ, QQQM</td></tr><tr id="204474a1-0192-8029-88bf-eddb7c5bf09e" dir="ltr"><td id=":JS&gt;" class=""><strong>다우존스</strong></td><td id="^goQ" class="">미국 30개 대형 우량주</td><td id="N[zX" class="">미국 산업 대표주 30개에 집중→ 안정성과 배당 중심</td><td id="sE;b" class="">DIA, SCHD</td></tr></tbody></table><ul id="205474a1-0192-800f-9572-de24c9c134fd" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>처음엔 S&amp;P500</strong> ETF가 가장 안정적이고 무난</li></ul><ul id="205474a1-0192-8066-bb7c-fc7c710615e6" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>성장성</strong>을 노리고 싶다면 나스닥100</li></ul><ul id="205474a1-0192-80d3-87a8-d900fa6d3126" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>안정성과 배당 위주</strong>라면 다우지수도 고려(안전한 월급있는 현역은 비추)</li></ul><p id="36b474a1-0192-806f-8462-c2bded111203" class="" dir="auto">
+</p><h3 id="20d474a1-0192-8052-a345-f0a129605312" class="" dir="auto">S&amp;P500 지수 추종 ETF</h3><figure id="20d474a1-0192-807b-b744-fb1af8ae9e16" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-10_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_6.17.28.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-10_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_6.17.28.jpg"><img style="width:2192px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-10_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_6.17.28.jpg"/></a></figure><p id="36b474a1-0192-80f6-9bb6-fc5ec616b856" class="" dir="auto">
+</p><h3 id="20d474a1-0192-80ee-8889-d7bd23213d38" class="" dir="auto">S&amp;P500 최근 10년치 하락 데이터</h3><table id="20d474a1-0192-801a-b577-d60af3658b6e" class="simple-table" dir="ltr"><tbody><tr id="20d474a1-0192-80e7-9642-e5a3b57c7352" dir="ltr"><td id="YEhD" class="">기간</td><td id="NvNP" class="">하락 폭</td><td id="zHAr" class="">하락 기간</td><td id="vy@K" class="" style="width:119.99715423583984px">전고점 회복 기간</td></tr><tr id="20d474a1-0192-8039-91f4-f02da42184c0" dir="ltr"><td id="YEhD" class=""><strong>2015.08–2016.02</strong></td><td id="NvNP" class="">약 –12%</td><td id="zHAr" class="">약 6개월</td><td id="vy@K" class="" style="width:119.99715423583984px">약 6개월</td></tr><tr id="20d474a1-0192-8065-8aef-eeddfb2afd2e" dir="ltr"><td id="YEhD" class=""><strong>2018.01–2018.02</strong></td><td id="NvNP" class="">약 –10%</td><td id="zHAr" class="">약 1개월</td><td id="vy@K" class="" style="width:119.99715423583984px">약 12개월</td></tr><tr id="20d474a1-0192-8009-935c-f063a1e81b9b" dir="ltr"><td id="YEhD" class=""><strong>2018.10–2018.12</strong></td><td id="NvNP" class="">약 –12%</td><td id="zHAr" class="">약 2개월</td><td id="vy@K" class="" style="width:119.99715423583984px">약 4개월</td></tr><tr id="20d474a1-0192-8093-acd3-d97c04027670" dir="ltr"><td id="YEhD" class=""><strong>2020.02–2020.03</strong></td><td id="NvNP" class="">약 –33%</td><td id="zHAr" class="">약 1개월</td><td id="vy@K" class="" style="width:119.99715423583984px">약 6개월</td></tr><tr id="20d474a1-0192-8053-9453-e52110956ea7" dir="ltr"><td id="YEhD" class=""><strong>2022.01–2022.10</strong></td><td id="NvNP" class="">약 –25%</td><td id="zHAr" class=""><mark class="highlight-red" data-notion-highlight="red">약 9개월</mark></td><td id="vy@K" class="" style="width:119.99715423583984px"><mark class="highlight-red" data-notion-highlight="red">약 12~18개월</mark></td></tr><tr id="20d474a1-0192-8002-93ad-d0e7c76a51c6" dir="ltr"><td id="YEhD" class=""><strong>2024.06</strong></td><td id="NvNP" class="">약 –5~6%</td><td id="zHAr" class="">약 1개월</td><td id="vy@K" class="" style="width:119.99715423583984px">약 2~3개월</td></tr><tr id="20d474a1-0192-800b-9c7c-ec1f98a81730" dir="ltr"><td id="YEhD" class=""><strong>2024.10</strong></td><td id="NvNP" class="">약 –5~6%</td><td id="zHAr" class="">약 1개월</td><td id="vy@K" class="" style="width:119.99715423583984px">약 2~3개월</td></tr><tr id="20d474a1-0192-8026-8522-cc6c04c5775a" dir="ltr"><td id="YEhD" class=""><strong>2025.02–04</strong></td><td id="NvNP" class=""><strong>약 –18%</strong></td><td id="zHAr" class=""><strong>약 2개월</strong></td><td id="vy@K" class="" style="width:119.99715423583984px"><strong>약 2.5~3개월</strong></td></tr></tbody></table><p id="3a4474a1-0192-80fd-aef5-fc259dc7e7af" class="" dir="auto">
+</p><h3 id="20d474a1-0192-8022-90fd-e59ed8f43c82" class="" dir="auto">S&amp;P500 최소 3년 이상 장기 투자하면, 연평균 10% 이상</h3><table id="20d474a1-0192-804b-85a6-cbcbb89f6f63" class="simple-table" dir="ltr"><tbody><tr id="20d474a1-0192-804a-b0ac-d64b45ad3589" dir="ltr"><td id="tOs@" class="">연도</td><td id="Q&gt;`V" class="">연간 수익률 (%)</td><td id="&lt;_Qx" class="">3년간 연평균 수익률 (%)</td><td id=":p?l" class="">10% 이상 여부</td></tr><tr id="20d474a1-0192-802a-8722-cec9f8596d6a" dir="ltr"><td id="tOs@" class="">2015</td><td id="Q&gt;`V" class="">+1.38</td><td id="&lt;_Qx" class="">—</td><td id=":p?l" class="">—</td></tr><tr id="20d474a1-0192-80d3-9163-e8501d7bcc6e" dir="ltr"><td id="tOs@" class="">2016</td><td id="Q&gt;`V" class="">+11.96</td><td id="&lt;_Qx" class="">—</td><td id=":p?l" class="">—</td></tr><tr id="20d474a1-0192-8039-9091-d79cfa7619aa" dir="ltr"><td id="tOs@" class="">2017</td><td id="Q&gt;`V" class="">+21.83</td><td id="&lt;_Qx" class=""><strong>11.06</strong> (2015~17)</td><td id=":p?l" class="">✔️</td></tr><tr id="20d474a1-0192-80c6-ba40-c462f84245ab" dir="ltr"><td id="tOs@" class="">2018</td><td id="Q&gt;`V" class="">–4.38</td><td id="&lt;_Qx" class=""><strong>9.80</strong> (2016~18)</td><td id=":p?l" class="">❌</td></tr><tr id="20d474a1-0192-8095-b14f-c751664801bb" dir="ltr"><td id="tOs@" class="">2019</td><td id="Q&gt;`V" class="">+31.49</td><td id="&lt;_Qx" class=""><strong>16.98</strong> (2017~19)</td><td id=":p?l" class="">✔️</td></tr><tr id="20d474a1-0192-806f-84a5-e06a46d76ffd" dir="ltr"><td id="tOs@" class="">2020</td><td id="Q&gt;`V" class="">+18.40</td><td id="&lt;_Qx" class=""><strong>15.17</strong> (2018~20)</td><td id=":p?l" class="">✔️</td></tr><tr id="20d474a1-0192-8072-b31e-fa0de0b77276" dir="ltr"><td id="tOs@" class="">2021</td><td id="Q&gt;`V" class="">+28.71</td><td id="&lt;_Qx" class=""><strong>26.87</strong> (2019~21)</td><td id=":p?l" class="">✔️</td></tr><tr id="20d474a1-0192-8032-bdc2-e624c96e097b" dir="ltr"><td id="tOs@" class="">2022</td><td id="Q&gt;`V" class="">–18.11</td><td id="&lt;_Qx" class=""><strong>9.67</strong> (2020~22)</td><td id=":p?l" class="">❌</td></tr><tr id="20d474a1-0192-80f7-9826-e38c593e5f10" dir="ltr"><td id="tOs@" class="">2023</td><td id="Q&gt;`V" class="">+26.29</td><td id="&lt;_Qx" class=""><strong>12.96</strong> (2021~23)</td><td id=":p?l" class="">✔️</td></tr><tr id="20d474a1-0192-80e7-821f-ce5d934c80ba" dir="ltr"><td id="tOs@" class="">2024</td><td id="Q&gt;`V" class="">+25.02 (예측)</td><td id="&lt;_Qx" class=""><strong>11.73</strong> (2022~24)</td><td id=":p?l" class="">✔️</td></tr><tr id="20d474a1-0192-80aa-a16d-f068e0360c57" dir="ltr"><td id="tOs@" class="">2025</td><td id="Q&gt;`V" class="">+2.72 (6월 기준)</td><td id="&lt;_Qx" class=""><strong>18.68</strong> (2023~25)</td><td id=":p?l" class="">✔️</td></tr></tbody></table><p id="39c474a1-0192-8068-968a-e4ec00dcd156" class="" dir="auto">
+</p><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="/icons/dialogue_gray.svg" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="39c474a1-0192-8036-809f-e7f5c7e98c01" dir="ltr"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://app.notion.com/icons/dialogue_gray.svg"/></div><div style="width:100%"><p id="39c474a1-0192-802f-be9c-c260940eefa0" class="" dir="auto"><strong>SPY, VOO, SLPG, IVV, SPYM(S&amp;P500)</strong></p><p id="39c474a1-0192-802e-a1f2-ee554a21152d" class="" dir="auto"><strong>QQQ, QQQM, IQQ (나스닥100)</strong></p><p id="39c474a1-0192-8053-a3c9-d9f5d2563eec" class="" dir="auto"><strong>DIA(다우존스)</strong></p><p id="3a4474a1-0192-8098-a98a-ff1fa21d440e" class="" dir="auto"><strong>SPMO(모멘텀 점수가 가장 높은 S&amp;P500지수 약 100개 종목)</strong></p><p id="39c474a1-0192-80b8-a9a6-fa4221d61849" class="" dir="auto"><strong>SCHD(다우존스, 배당성장주)</strong></p><p id="39c474a1-0192-80b2-b7a7-f7c0eb950a42" class="" dir="auto"><strong>SCHG(다우존스, 200개 기업)</strong></p><p id="39c474a1-0192-80bc-9762-e78326ba5198" class="" dir="auto"><strong>SOXX, SMH(반도체 지수)</strong></p><p id="39c474a1-0192-8030-a4ba-ec85c1c232af" class="" dir="auto"><strong>FNGS(Magnity7 등 우량 10개 기업)</strong></p><p id="39c474a1-0192-800c-846a-d990135823c7" class="" dir="auto"><strong>SCHG(다우존스 미국 대형 성장주 토탈 주식시장 지수)</strong></p><p id="39c474a1-0192-80f2-bb23-eaddfe0859d9" class="" dir="auto"><strong>VYM(FTSE 고배당수익지수, 평균을 상회하는 배당을 지급하는 기업들의 보통주로 구성)</strong></p><p id="39c474a1-0192-80bb-9f21-f0ef778d1715" class="" dir="auto">
+</p></div></aside><p id="20d474a1-0192-80d4-b5d1-fde900d4392b" class="" dir="auto">
+</p><h3 id="204474a1-0192-809d-89e9-fa3201ec5d36" class="" dir="auto">오늘의 정리</h3><blockquote id="204474a1-0192-8087-9feb-f7fddd9b1ce9" class="" dir="auto">&quot;주식은 위험한 것이 아니라,<p id="204474a1-0192-80aa-b6d8-c50ccdcb7ec7" class="" dir="auto"><strong>제대로만 하면 가장 현실적인 자산 증식 수단</strong>이다.&quot;</p></blockquote><p id="204474a1-0192-808f-839d-c5a584b321ee" class="" dir="auto">✔️ 단타, 몰빵, 정보 부족이 진짜 위험의 원인</p><p id="204474a1-0192-8023-9b7c-edd8378b2d81" class="" dir="auto">✔️ 장기 + 분산 + 전략적 투자 = 안전하고 실현 가능한 방식</p><p id="204474a1-0192-8009-a1cb-ecf7c11790d1" class="" dir="auto">✔️ S&amp;P500 같은 지수를 활용한 ETF 투자</p><p id="204474a1-0192-80e7-90dc-c0b68fb61dc0" class="" dir="auto">✔️ 세계적인 투자 대가들도 모두 장기 투자 지지</p><p id="204474a1-0192-80fb-a490-ebb41d60348b" class="" dir="auto">✔️ 군인의 월급 구조는 장기 투자에 매우 적합</p><p id="20e474a1-0192-8001-98eb-cbc501aa5f86" class="" dir="auto">
+</p><h3 id="204474a1-0192-805c-8584-f8ab13e1d0a8" class="" dir="auto">이번주 과제</h3><ol type="1" id="204474a1-0192-80f3-b044-ceb50de19e97" class="numbered-list" start="1" dir="auto"><li>(필수, 카페 인증글 작성) <strong>내가 투자할 ETF 조사하고 선택한 이유를 정성껏 작성 바랍니다.</strong></li></ol><ol type="1" id="20e474a1-0192-80cd-91f2-fd68bb1ea558" class="numbered-list" start="2" dir="auto"><li>(선택, 마인드 셋) 투자거장들의 책을 읽고 글쓰기</li></ol><div id="231474a1-0192-8043-ab9b-e100584e010e" class="column-list" data-notion-column-list="" dir="auto"><div id="231474a1-0192-8059-a2f7-c4bf6edb0a4e" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><figure id="20e474a1-0192-8027-b3ac-d0adfb3de22f" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-05-29_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_10.13.47.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-05-29_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_10.13.47.jpg"><img style="width:240px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-05-29_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_10.13.47.jpg"/></a></figure></div><div id="231474a1-0192-808d-8f58-c211fd174819" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><figure id="231474a1-0192-80d4-8131-f8e31eb2accd" class="image" data-notion-image="image.jpeg" dir="ltr"><a href="image.jpeg"><img style="width:192px" src="image.jpeg"/></a></figure></div><div id="2b6474a1-0192-8060-a0ae-eb7b34256578" style="width:33.33333333333333%" class="column" data-notion-column-ratio="0.3333333333333333" dir="auto"><figure id="2b6474a1-0192-8056-aad2-d012634e77cc" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-11-25_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_8.55.51.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-11-25_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_8.55.51.jpg"><img style="width:569.9928588867188px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-11-25_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_8.55.51.jpg"/></a></figure></div></div><p id="2c1474a1-0192-8056-951d-dfc482e1e1c6" class="" dir="auto">
+</p><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="/icons/dialogue_gray.svg" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="2c1474a1-0192-8093-9555-d8e29670eaa9" dir="ltr"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://app.notion.com/icons/dialogue_gray.svg"/></div><div style="width:100%"><h3 id="2c1474a1-0192-8083-8c34-fcf9f4766c6f" class="" dir="auto">황상우 작가(드림주스 멘토)님의 추천도서 목록</h3><p id="2c1474a1-0192-806b-8249-d0d3f8e35fb5" class="" dir="auto">   → 경제서적 100권 읽고 미국주식 장기투자하는 현역장교 투자자</p><p id="2c1474a1-0192-805b-bf9f-d9f9dcf01aad" class="" dir="auto">《위대한 기업에 투자하라》, 필립 피셔 | 굿모닝 북스<br/>《보수적인 투자자는 마음이 편하다》, 필립 피셔 | 굿모닝 북스<br/>《월가의 영웅》, 피터 린치 | 국일증권경제연구소<br/>《피터 린치의 투자 이야기》, 피터 린치 | 흐름출판<br/>《피터 린치의 이기는 투자》, 피터 린치 | 흐름출판<br/>《보도 섀퍼의 돈》, 보도 섀퍼 | 북플러스<br/>《돈의 심리학》, 모건 하우절 | 인플루엔셜<br/>《EBS, 자본주의》, EBS 자본주의 제작팀 | 가나출판사<br/>《부의 추월차선》, 엠제이 드마코 | 토트출판사<br/>《댄 애리얼리 부의 감각》, 댄 애리얼리 | 청림출판<br/>《이웃집 백만장자》, 토머스 J 스탠리 | 리드리드출판<br/>《부자의 그릇》, 이즈미 마사토 | 다산북스<br/>《부자의 언어》, 존 소포릭 | 윌북<br/>《워런버핏 바이블》, 워런 버핏, 리처드 코너스 | 에프엔미디어<br/>《찰리멍거 바이블》, 이건, 김재현 | 에프엔미디어<br/>《부자 아빠 가난한 아빠》, 로버트 기요사키 | 민음인<br/>《돈, 뜨겁게 사랑하고 차갑게 다루어라》, 앙드레 코스톨라니 | 미래의창<br/>《월급쟁이 부자로 은퇴하라》, 너나위 | 알에이치코리아<br/>《운명을 바꾸는 부동산 투자 수업》, 정태익 | 리더스북<br/>《비겁한 돈》, 황현희, 제갈현열 | 한빛비즈<br/>《주식시장의 17가지 미신》, 켄 피셔 | 페이지2북스<br/>《돈의 속성》, 김승호 | 스노우폭스북스<br/>《부의 본능》, 브라운스톤 | 토트출판사<br/>《부의 인문학》, 브라운스톤 | 오픈마인드<br/>《군인은 어떻게 부자가 될 수 있을까》, Rich Bee | 드림벙커<br/>《군인 월급으로 재테크 성공한 11명의 이야기》, 최원순 외 | 드림벙커</p></div></aside><p id="2c1474a1-0192-8007-bd03-e14a8c19d589" class="" dir="auto">
+</p><h3 id="231474a1-0192-80ae-9b00-f53a0c6e1283" class="" dir="auto">고생하셨습니다.</h3><p id="3a4474a1-0192-80b3-960b-f106a075e6eb" class="" dir="auto">
+</p><p id="3a4474a1-0192-80f8-bc25-c0559906381d" class="" dir="auto"> </p><p id="3fb474a1-0192-80db-beb9-edfe52cbe711" class="" dir="auto"><a href="https://app.notion.com/p/3aea59f0768080498e1dd9d6b10d4d4b?pvs=21">https://app.notion.com/p/3aea59f0768080498e1dd9d6b10d4d4b?source=copy_link</a></p><p id="3a4474a1-0192-8091-8592-d0f7740e0a72" class="" dir="auto">
+</p><p id="3a4474a1-0192-8000-b598-f2ba1c947dff" class="" dir="auto">
+</p><hr id="3fb474a1-0192-808e-9749-fa097bee9aeb" dir="auto"/><p id="3fb474a1-0192-8072-a31a-ea0b79bd2ce0" class="" dir="auto">
+</p><p id="3a4474a1-0192-80ba-8828-e66f2342d739" class="" dir="auto">
+</p><p id="3a4474a1-0192-8046-8fa8-e592b666a2da" class="" dir="auto">
+</p><p id="3a4474a1-0192-8039-b2ff-d44f12d0661c" class="" dir="auto">
+</p><p id="3a4474a1-0192-8078-948f-f2189984eb3b" class="" dir="auto">
+</p><p id="3a4474a1-0192-8082-9bb8-db6e204b08f5" class="" dir="auto">
+</p><p id="3a4474a1-0192-8035-80d0-e16fb549e2e1" class="" dir="auto">
+</p><h1 id="39c474a1-0192-801b-8e8e-fe6cde3bd166" class="" dir="auto">&quot;ETF 하나만 알아도 투자의 절반은 끝&quot;</h1><h3 id="39c474a1-0192-80d7-ad47-ec15cbbe38ad" class="" dir="auto">PART 1. ETF란 무엇인가?</h3><ul id="39c474a1-0192-8090-8c63-efb90bdd68c6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ETF의 구조</li></ul><ul id="39c474a1-0192-80cc-951c-de55a66c012c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">개별주와 ETF의 차이</li></ul><h3 id="39c474a1-0192-803d-85fc-f45ff9b7b64e" class="" dir="auto">PART 2. 대표 ETF 분석</h3><ul id="39c474a1-0192-80b1-a382-d778121b977c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">S&amp;P500</li></ul><ul id="39c474a1-0192-8051-8d07-fc6f0f5f20d7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">나스닥100</li></ul><ul id="39c474a1-0192-8034-9d01-ebf2eaad8e68" class="bulleted-list" dir="auto"><li style="list-style-type:disc">배당 ETF</li></ul><ul id="39c474a1-0192-8049-a3fd-c8167895e010" class="bulleted-list" dir="auto"><li style="list-style-type:disc">커버드콜 ETF</li></ul><h3 id="39c474a1-0192-80d2-a742-de2ef8a787f4" class="" dir="auto">PART 3. ETF를 보는 5가지 기준</h3><ul id="39c474a1-0192-8045-b7a0-d7c56e6c296f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">운용보수</li></ul><ul id="39c474a1-0192-807e-9a40-e5b824dc191f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">자산규모</li></ul><ul id="39c474a1-0192-800c-9b54-e91b323db9fc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">거래량</li></ul><ul id="39c474a1-0192-807b-8cf1-fc89248dc58f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">분산도</li></ul><ul id="39c474a1-0192-8013-9b87-f8c6f76d3e94" class="bulleted-list" dir="auto"><li style="list-style-type:disc">수익률</li></ul><h3 id="39c474a1-0192-8092-a06d-d1b013bfa354" class="" dir="auto">PART 4. ETF 분석 사이트 활용법</h3><ul id="39c474a1-0192-8091-aa9b-ee05e55666f7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ETF.com</li></ul><ul id="39c474a1-0192-80c1-9c31-e0ef1a974aba" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Seeking Alpha</li></ul><ul id="39c474a1-0192-803d-9bdd-c7ee4e170df0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Yahoo Finance</li></ul><h3 id="39c474a1-0192-80dc-bd07-f5ed4e41e6e9" class="" dir="auto">과제</h3><ul id="39c474a1-0192-804c-a484-d7d80b26e8d3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">관심 ETF 3개 분석하기</li></ul><p id="3fb474a1-0192-8054-b48c-f0a7336150e7" class="" dir="auto">
+</p><p id="3fb474a1-0192-8012-a631-e641d97c5f0e" class="" dir="auto">
+</p><p id="3fb474a1-0192-8048-91d1-e552844f942a" class="" dir="auto">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

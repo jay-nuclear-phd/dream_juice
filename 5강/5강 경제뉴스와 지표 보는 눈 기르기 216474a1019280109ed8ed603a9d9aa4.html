@@ -1,0 +1,843 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>5강  경제뉴스와 지표 보는 눈 기르기</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+	/* Paint a complete callout box on every PDF page fragment. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="216474a1-0192-8010-9ed8-ed603a9d9aa4" class="page sans"><header><h1 class="page-title" dir="auto">5강  경제뉴스와 지표 보는 눈 기르기</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://app.notion.com/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Created</th><td><time datetime="2025-06-18T21:30">June 18, 2025 9:30 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://app.notion.com/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><figure id="216474a1-0192-81c4-b0bf-ca139bd3aff2" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg"><img style="width:709.9857788085938px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg"/></a></figure><h1 id="216474a1-0192-81e2-953f-fcd76bac6e73" class="" dir="auto">5강   경제뉴스와 지표 보는 눈 기르기</h1><p id="246474a1-0192-802c-be3a-c23cda62756c" class="" dir="auto">
+</p><p id="22a474a1-0192-8061-b8b2-cf450917e0a1" class="" dir="auto">경제전공 X, 전문가 X, 개인 투자자 + 실전 경험<br/> → 지식 전달이 아니라 경제 뉴스와 지표를 보는 관점(3가지)에 대한 이야기 임.</p><p id="3bf474a1-0192-80d7-af25-d659adfd70b2" class="" dir="auto">
+</p><h3 id="216474a1-0192-80d8-98a8-c21753b49a21" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>관점 1. 경제 뉴스에 대한 착각</strong></mark></h3><ol type="1" id="216474a1-0192-807c-b0a3-c61043532513" class="numbered-list" start="1" dir="auto"><li>신문사의 가장 큰 고객은 광고내는 기업, 그 다음이 구독자 → 기업 친화적인 신문사</li></ol><ol type="1" id="216474a1-0192-8079-bf05-e22b0de254c1" class="numbered-list" start="2" dir="auto"><li>기자는 경제학 전공 전문가가 아니다. → 다 믿을수 없다.</li></ol><ol type="1" id="216474a1-0192-8047-9d66-d9577c0eec60" class="numbered-list" start="3" dir="auto"><li>기자는 자극적인 제목의 글을 쓴다. → 구독자, 조회수</li></ol><ol type="1" id="220474a1-0192-80d2-a051-c3494c5eeec3" class="numbered-list" start="4" dir="auto"><li>증시 전망은 증권사에서 쓴다. → 증권사 이득되도록 거래 촉진</li></ol><p id="220474a1-0192-802b-a263-d5c1c6941091" class="" dir="auto">
+</p><p id="216474a1-0192-80ae-bb92-cbd2bade5de0" class="" dir="auto"><mark class="highlight-default" data-notion-highlight="default"><strong>주식은 과장.왜곡 다수, 부동산은 뒷북</strong></mark></p><p id="21f474a1-0192-8073-85a3-d069fb5d4030" class="" dir="auto">뉴스에 휘둘리지 말고, <strong>기사를 잘 활용</strong>하자</p><p id="220474a1-0192-80c4-a815-e6aed61797da" class="" dir="auto">&quot;어디서 나왔는가&quot;, &quot;누가 썼는가&quot;, &quot;왜 이 시점인가&quot;를 항상 의심할 것</p><p id="21f474a1-0192-80f6-8ece-db168f208ed5" class="" dir="auto">  예) &#x27;○○ 주식 지금 사야 한다&#x27;는 기사가 왜 이 시점에 나왔는지 확인하기</p><p id="220474a1-0192-80e4-81f8-dfe66313963a" class="" dir="auto">
+</p><h3 id="216474a1-0192-80a6-a9d4-e3e0afdb7f66" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>관점 2. 뉴스에 나오는 지표들</strong></mark></h3><figure id="216474a1-0192-809d-977c-c8d10db55656" class="image" data-notion-image="f55df974-4c9b-41d8-b5fc-e6b9f1029963.png" dir="ltr"><a href="f55df974-4c9b-41d8-b5fc-e6b9f1029963.png"><img style="width:708px" src="f55df974-4c9b-41d8-b5fc-e6b9f1029963.png"/></a></figure><figure id="220474a1-0192-801a-9e61-e75bf7470485" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-28_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_12.10.14.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-28_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_12.10.14.jpg"><img style="width:709.9786376953125px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-28_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_12.10.14.jpg"/></a></figure><figure id="216474a1-0192-803e-8282-efe9ada4b702" class="image" data-notion-image="%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2025-01-09_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE_9.58.11.jpg" dir="ltr"><a href="%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2025-01-09_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE_9.58.11.jpg"><img style="width:707.984375px" src="%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2025-01-09_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE_9.58.11.jpg"/></a></figure><p id="216474a1-0192-80ec-8199-e832ad150cfb" class="" dir="auto"><em>“금리인하 속도조절”</em></p><p id="216474a1-0192-80aa-af59-f5ca8bb7830e" class="" dir="auto"><em>“미 국채금리 4.7% 돌파에 시장 흔들”</em></p><p id="216474a1-0192-804d-9b3d-e70a31ffb698" class="" dir="auto"><em>“고용지표”</em></p><p id="216474a1-0192-8041-a6f6-e995d9537b4f" class="" dir="auto">뉴스에 나오는 경제지표로 미 증시가 오르락 내리락 한다.</p><p id="216474a1-0192-804c-8279-df7851f42827" class="" dir="auto">
+</p><h3 id="216474a1-0192-80bf-ad34-c2b98fd663e0" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">경제지표를 볼 줄 모르면</mark></h3><ul id="216474a1-0192-8032-b28b-c8a086c598fd" class="bulleted-list" dir="auto"><li style="list-style-type:disc">기자가 쓴 지표와 의견에만 의존하게 된다.</li></ul><ul id="216474a1-0192-8057-856a-ed9b5b8538bd" class="bulleted-list" dir="auto"><li style="list-style-type:disc">이슈화에 필요한 단편적인 지표만 기사화 → 경제 상황에 대한 과장 &amp; 왜곡 발생</li></ul><ul id="216474a1-0192-80c3-ad02-cb7aaad3f7d5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">기사를 써줄 때 까지 원하는 지표를 적시 적절하게 확인할 수 없다.(수세적 입장이 될 수 밖에)</li></ul><p id="216474a1-0192-8054-8bcb-e8f6cbdeb5e8" class="" dir="auto">따라서, 필요한 경제지표와 경제 흐름을 이해하는 나만의 관점이 필요하다. </p><p id="216474a1-0192-807a-8587-eebcb4f7c110" class="" dir="auto">
+</p><h3 id="216474a1-0192-80cf-8b4b-e23e1e2a132e" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">관심갖아야 할 지표</mark></h3><p id="220474a1-0192-80d0-869a-e05142c73b5e" class="" dir="auto"><strong>경제확장</strong></p><table id="21f474a1-0192-80bd-96e8-fe28fd1d0558" class="simple-table" dir="ltr"><tbody><tr id="21f474a1-0192-80d3-8fd2-d420ebcad47d" dir="ltr"><td id="^L@d" class="" style="width:191.28408813476562px">지표명</td><td id="V\JX" class="" style="width:240.4957275390625px">설명</td><td id="}XI&gt;" class="" style="width:183.7173309326172px">발표주체 / 참고</td></tr><tr id="21f474a1-0192-8009-9592-f1e026784985" dir="ltr"><td id="^L@d" class="" style="width:191.28408813476562px"><mark class="highlight-red" data-notion-highlight="red"><strong>GDP</strong></mark></td><td id="V\JX" class="" style="width:240.4957275390625px">국내총생산 (경제성장률)</td><td id="}XI&gt;" class="" style="width:183.7173309326172px">美 BEA / 한국은행</td></tr><tr id="21f474a1-0192-8014-8ed2-d85c0a9ae8b0" dir="ltr"><td id="^L@d" class="" style="width:191.28408813476562px"><mark class="highlight-red" data-notion-highlight="red"><strong>기업 실적 (EPS)</strong></mark></td><td id="V\JX" class="" style="width:240.4957275390625px">기업당 순이익, 실적시즌 참고</td><td id="}XI&gt;" class="" style="width:183.7173309326172px">기업 IR / 금융플랫폼</td></tr><tr id="21f474a1-0192-805e-b97f-d06151b1131d" dir="ltr"><td id="^L@d" class="" style="width:191.28408813476562px"><mark class="highlight-red" data-notion-highlight="red"><strong>주택착공건수</strong></mark></td><td id="V\JX" class="" style="width:240.4957275390625px">건설경기 선행지표</td><td id="}XI&gt;" class="" style="width:183.7173309326172px">美 상무부</td></tr><tr id="21f474a1-0192-8025-b6ba-d19b05efa25d" dir="ltr"><td id="^L@d" class="" style="width:191.28408813476562px"><strong>소매판매 (Retail Sales)</strong></td><td id="V\JX" class="" style="width:240.4957275390625px">소비자 지출 규모, 민간소비 파악</td><td id="}XI&gt;" class="" style="width:183.7173309326172px">美 상무부</td></tr><tr id="21f474a1-0192-80a5-9c3b-c1327b1eba69" dir="ltr"><td id="^L@d" class="" style="width:191.28408813476562px"><mark class="highlight-red" data-notion-highlight="red"><strong>PMI (구매관리자지수)</strong></mark></td><td id="V\JX" class="" style="width:240.4957275390625px">제조업·서비스업 경기전망</td><td id="}XI&gt;" class="" style="width:183.7173309326172px">ISM / 한국은 제조업지수</td></tr><tr id="21f474a1-0192-80c5-a934-eded3aeaae64" dir="ltr"><td id="^L@d" class="" style="width:191.28408813476562px"><strong>내구재 주문</strong></td><td id="V\JX" class="" style="width:240.4957275390625px">소비자·기업의 설비투자 지표</td><td id="}XI&gt;" class="" style="width:183.7173309326172px">美 상무부</td></tr><tr id="21f474a1-0192-80ef-b019-d7283d2eeb77" dir="ltr"><td id="^L@d" class="" style="width:191.28408813476562px"><strong>산업생산지수</strong></td><td id="V\JX" class="" style="width:240.4957275390625px">산업 전반의 생산활동 강도</td><td id="}XI&gt;" class="" style="width:183.7173309326172px">美 연준 / 한국 통계청</td></tr><tr id="21f474a1-0192-803f-ac75-dea077064c0f" dir="ltr"><td id="^L@d" class="" style="width:191.28408813476562px"><strong>설비투자</strong></td><td id="V\JX" class="" style="width:240.4957275390625px">기업들의 투자 흐름</td><td id="}XI&gt;" class="" style="width:183.7173309326172px">한국 통계청 / KDI</td></tr></tbody></table><p id="21f474a1-0192-8084-8a68-f51b9cf50688" class="" dir="auto"><strong>경제위축</strong></p><table id="21f474a1-0192-80d9-a129-fb9c40c0cd41" class="simple-table" dir="ltr"><tbody><tr id="21f474a1-0192-80c0-8050-d38aacd4f5f9" dir="ltr"><td id="{lg|" class="" style="width:188.99998474121094px">지표명</td><td id="AbEG" class="" style="width:244.28692626953125px">설명</td><td id="&gt;&gt;T\" class="">발표주체 / 참고</td></tr><tr id="21f474a1-0192-809c-bd0b-c55510c2b083" dir="ltr"><td id="{lg|" class="" style="width:188.99998474121094px"><mark class="highlight-red" data-notion-highlight="red"><strong>실업률</strong></mark></td><td id="AbEG" class="" style="width:244.28692626953125px">경제활동인구 중 실업자 비율</td><td id="&gt;&gt;T\" class="">美 BLS / 한국 통계청</td></tr><tr id="21f474a1-0192-80c1-a71c-f80ca399af26" dir="ltr"><td id="{lg|" class="" style="width:188.99998474121094px"><mark class="highlight-red" data-notion-highlight="red"><strong>비농업 고용자수 (NFP)</strong></mark></td><td id="AbEG" class="" style="width:244.28692626953125px">美 고용지표 핵심, 매달 첫 금요일 발표</td><td id="&gt;&gt;T\" class="">美 BLS</td></tr><tr id="21f474a1-0192-80eb-8718-e135b57c7ab3" dir="ltr"><td id="{lg|" class="" style="width:188.99998474121094px"><mark class="highlight-red" data-notion-highlight="red"><strong>실업수당 청구건수</strong></mark></td><td id="AbEG" class="" style="width:244.28692626953125px">경기 둔화 여부를 가장 빠르게 반영</td><td id="&gt;&gt;T\" class="">美 노동부 (주간발표)</td></tr><tr id="21f474a1-0192-80fd-be81-c74f7b749766" dir="ltr"><td id="{lg|" class="" style="width:188.99998474121094px"><strong>노동참여율</strong></td><td id="AbEG" class="" style="width:244.28692626953125px">경제활동 인구 비중</td><td id="&gt;&gt;T\" class="">美 BLS</td></tr><tr id="21f474a1-0192-8051-9a64-e25b7878aa62" dir="ltr"><td id="{lg|" class="" style="width:188.99998474121094px"><strong>임금상승률</strong></td><td id="AbEG" class="" style="width:244.28692626953125px">임금 증가율, 인플레 영향도 있음</td><td id="&gt;&gt;T\" class="">美 BLS</td></tr><tr id="21f474a1-0192-8085-ae8b-eb80b34a548d" dir="ltr"><td id="{lg|" class="" style="width:188.99998474121094px"><strong>소비자심리지수 (Consumer Confidence)</strong></td><td id="AbEG" class="" style="width:244.28692626953125px">소비자들의 경제에 대한 기대감</td><td id="&gt;&gt;T\" class="">Conference Board / 통계청</td></tr><tr id="21f474a1-0192-8058-b5a7-d72a353bf634" dir="ltr"><td id="{lg|" class="" style="width:188.99998474121094px"><strong>ISM 고용지수</strong></td><td id="AbEG" class="" style="width:244.28692626953125px">고용전망 선행지표</td><td id="&gt;&gt;T\" class="">ISM</td></tr><tr id="21f474a1-0192-80bf-9d09-ec6a052dd782" dir="ltr"><td id="{lg|" class="" style="width:188.99998474121094px"><strong>퇴직률, 채용률 (JOLTS)</strong></td><td id="AbEG" class="" style="width:244.28692626953125px">채용공고, 이직 등 노동시장 흐름</td><td id="&gt;&gt;T\" class="">美 BLS</td></tr></tbody></table><p id="220474a1-0192-80d3-a2ad-c79c9fb0086a" class="" dir="auto"><strong>통화정책 및 유동성</strong></p><table id="21f474a1-0192-8098-8342-fdade0a44823" class="simple-table" dir="ltr"><tbody><tr id="21f474a1-0192-8014-bf5c-ddabdf644846" dir="ltr"><td id="QWge" class="" style="width:227.5908966064453px">지표명</td><td id="xmJR" class="" style="width:253.99998474121094px">설명</td><td id="|mUF" class="">발표주체 / 참고</td></tr><tr id="21f474a1-0192-80f4-b536-c0f89d593628" dir="ltr"><td id="QWge" class="" style="width:227.5908966064453px"><mark class="highlight-red" data-notion-highlight="red"><strong>기준금리 (FFR 등)</strong></mark></td><td id="xmJR" class="" style="width:253.99998474121094px">중앙은행이 조정하는 금리 수준</td><td id="|mUF" class="">美 연준 / 한국은행</td></tr><tr id="21f474a1-0192-805c-8558-d83c4b582ec4" dir="ltr"><td id="QWge" class="" style="width:227.5908966064453px"><mark class="highlight-red" data-notion-highlight="red"><strong>통화량 (M2)</strong></mark></td><td id="xmJR" class="" style="width:253.99998474121094px">시중에 풀린 광의 통화</td><td id="|mUF" class="">한국은행 / 美 연준</td></tr><tr id="21f474a1-0192-802e-adb8-de6f62961826" dir="ltr"><td id="QWge" class="" style="width:227.5908966064453px"><mark class="highlight-red" data-notion-highlight="red"><strong>통화유통속도 (Velocity of Money)</strong></mark></td><td id="xmJR" class="" style="width:253.99998474121094px">돈이 얼마나 빠르게 순환하는지</td><td id="|mUF" class="">美 연준 (FRED)</td></tr><tr id="21f474a1-0192-806d-8c09-cfc1d25499ef" dir="ltr"><td id="QWge" class="" style="width:227.5908966064453px"><mark class="highlight-red" data-notion-highlight="red"><strong>달러인덱스 (DXY)</strong></mark></td><td id="xmJR" class="" style="width:253.99998474121094px">주요 6개국 통화 대비 달러가치</td><td id="|mUF" class="">ICE / 환율 플랫폼</td></tr><tr id="21f474a1-0192-804d-9bc9-ebe08ae447c0" dir="ltr"><td id="QWge" class="" style="width:227.5908966064453px"><strong>유동성지표 (Bank Reserves)</strong></td><td id="xmJR" class="" style="width:253.99998474121094px">초과지준, 예금기관 유동성</td><td id="|mUF" class="">美 연준</td></tr><tr id="21f474a1-0192-8070-8d47-f1635456c1a1" dir="ltr"><td id="QWge" class="" style="width:227.5908966064453px"><strong>재할인율 / 기준금리변화 전망</strong></td><td id="xmJR" class="" style="width:253.99998474121094px">정책금리 방향성 참고</td><td id="|mUF" class="">CME FedWatch 등</td></tr><tr id="21f474a1-0192-80f4-aee4-ec5cad32c0ce" dir="ltr"><td id="QWge" class="" style="width:227.5908966064453px"><strong>장단기 금리차 (Yield Curve)</strong></td><td id="xmJR" class="" style="width:253.99998474121094px">장기금리 - 단기금리 차이 / 경기 침체 신호</td><td id="|mUF" class="">美 재무부</td></tr><tr id="21f474a1-0192-802e-b1ee-ddcad15fcf60" dir="ltr"><td id="QWge" class="" style="width:227.5908966064453px"><strong>국채금리 (10년물 등)</strong></td><td id="xmJR" class="" style="width:253.99998474121094px">시장금리 지표 / 물가·성장 기대 반영</td><td id="|mUF" class="">美 재무부 / 채권시장</td></tr></tbody></table><p id="227474a1-0192-80b3-a18c-f227dcaa3fb2" class="" dir="auto"><strong>물가지수</strong></p><table id="21f474a1-0192-807f-a01a-df36a3c2cc13" class="simple-table" dir="ltr"><tbody><tr id="21f474a1-0192-8080-b841-ee3815364219" dir="ltr"><td id="GG_v" class="" style="width:125.33380126953125px">지표명</td><td id="Fvzz" class="" style="width:111.78266906738281px">한글명</td><td id="MmxE" class="" style="width:192.8693084716797px">설명</td><td id="Rokt" class="">투자 관점에서의 중요성</td><td id="Ioaz" class="">발표기관</td></tr><tr id="21f474a1-0192-8044-9cd9-fa9675a38bd7" dir="ltr"><td id="GG_v" class="" style="width:125.33380126953125px"><strong>CPI</strong></td><td id="Fvzz" class="" style="width:111.78266906738281px">소비자물가지수</td><td id="MmxE" class="" style="width:192.8693084716797px">소비자가 실제로 체감하는 생활물가 수준주거비, 식료품, 교통비 등 포함</td><td id="Rokt" class=""><strong>인플레이션의 대표 지표</strong>금리 인상/인하 결정에 큰 영향</td><td id="Ioaz" class="">美 노동부 (매월)</td></tr><tr id="21f474a1-0192-8016-9ccf-ca49cb696618" dir="ltr"><td id="GG_v" class="" style="width:125.33380126953125px"><strong>Core CPI</strong></td><td id="Fvzz" class="" style="width:111.78266906738281px">근원 소비자물가지수</td><td id="MmxE" class="" style="width:192.8693084716797px">CPI에서 <strong>변동성이 큰 식료품, 에너지 제외</strong>더 안정적인 물가 추세 판단 가능</td><td id="Rokt" class="">연준의 정책 판단에 <strong>중요한 참고자료</strong></td><td id="Ioaz" class="">美 노동부</td></tr><tr id="21f474a1-0192-8070-a793-ff4837064413" dir="ltr"><td id="GG_v" class="" style="width:125.33380126953125px"><mark class="highlight-red" data-notion-highlight="red"><strong>PCE</strong></mark></td><td id="Fvzz" class="" style="width:111.78266906738281px">개인소비지출지수</td><td id="MmxE" class="" style="width:192.8693084716797px">미국 소비자가 지출한 항목을 기반으로 측정소비 패턴 변화를 반영 (동적 가중치)</td><td id="Rokt" class=""><strong>연준(Fed)이 가장 중요하게 보는 지표</strong></td><td id="Ioaz" class="">美 상무부 (BEA)</td></tr><tr id="21f474a1-0192-8054-bed6-c73760a2b328" dir="ltr"><td id="GG_v" class="" style="width:125.33380126953125px"><strong>Core PCE</strong></td><td id="Fvzz" class="" style="width:111.78266906738281px">근원 개인소비지출지수</td><td id="MmxE" class="" style="width:192.8693084716797px">PCE에서 식료품·에너지 제외정책적 신뢰도 매우 높음</td><td id="Rokt" class=""><strong>연준 목표 인플레이션 2% 기준 지표</strong></td><td id="Ioaz" class="">美 상무부</td></tr><tr id="21f474a1-0192-806b-8433-e49dc5882072" dir="ltr"><td id="GG_v" class="" style="width:125.33380126953125px"><strong>PPI</strong></td><td id="Fvzz" class="" style="width:111.78266906738281px">생산자물가지수</td><td id="MmxE" class="" style="width:192.8693084716797px">생산자가 받는 상품·서비스 가격의 변동원가 상승 → 소비자 물가 전이 가능성</td><td id="Rokt" class=""><strong>선행 물가지표</strong>, 기업 실적 영향도</td><td id="Ioaz" class="">美 노동부</td></tr><tr id="21f474a1-0192-80b0-b806-f5ea5734f8dd" dir="ltr"><td id="GG_v" class="" style="width:125.33380126953125px"><strong>Import / Export Price Index</strong></td><td id="Fvzz" class="" style="width:111.78266906738281px">수입/수출물가지수</td><td id="MmxE" class="" style="width:192.8693084716797px">수입품/수출품의 가격 변동특히 원자재·에너지 수입국에 민감</td><td id="Rokt" class="">원화 약세 시 <strong>수입물가 상승</strong>→ CPI 자극</td><td id="Ioaz" class="">美 노동부</td></tr><tr id="21f474a1-0192-8023-a2b4-ff4b8a5221b3" dir="ltr"><td id="GG_v" class="" style="width:125.33380126953125px"><strong>유가, 곡물, 원자재 가격</strong></td><td id="Fvzz" class="" style="width:111.78266906738281px">-</td><td id="MmxE" class="" style="width:192.8693084716797px">국제 원자재 시세 (WTI, 옥수수 등)특정 부문 물가 급등 원인 분석에 도움</td><td id="Rokt" class=""><strong>시장 변동성 유발 가능성 큼</strong>, 에너지·식품 관련 투자 참고</td><td id="Ioaz" class="">시장 (시세 실시간)</td></tr></tbody></table><p id="220474a1-0192-805e-8523-c2cf9b5b5ad4" class="" dir="auto">
+</p><h3 id="21a474a1-0192-80a7-98a2-f8dacc28f256" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">경제 지표 확인하는 방법</mark></h3><p id="227474a1-0192-8066-bae5-f1afb69ad616" class="" dir="auto">
+</p><p id="21a474a1-0192-80bc-b8db-dde975e1beea" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>경제지표 (FRED, 인덱서고)</strong></mark></p><figure id="21a474a1-0192-80cc-95b7-f55470a830c4" dir="ltr"><a href="https://fred.stlouisfed.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Federal Reserve Economic Data | FRED | St. Louis Fed</div><div class="bookmark-description">Download, graph, and track 825,000 economic time series from 114 sources.</div></div><div class="bookmark-href"><img src="https://fred.stlouisfed.org/favicon.ico" class="icon bookmark-icon"/>https://fred.stlouisfed.org/</div></div></a></figure><figure id="216474a1-0192-8068-8998-f24b08dad597" dir="ltr"><a href="https://www.indexergo.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">인덱서고-거시경제를 보는 눈</div><div class="bookmark-description">광범위한 거시경제 데이터와 쉽고 간편한 비교차트를 통해 인사이트를 키우세요!</div></div><div class="bookmark-href"><img src="https://www.indexergo.com/static/icon/favicon.png?q=1640842641" class="icon bookmark-icon"/>https://www.indexergo.com/</div></div><img src="https://www.indexergo.com/static/icon/INDEXerGO.png?q=1665800285" class="bookmark-image"/></a></figure><p id="227474a1-0192-8073-9c95-fe8a7ec54c30" class="" dir="auto">
+</p><p id="21a474a1-0192-80eb-bbde-d9a205f4255b" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>기준금리(FedWatch)</strong></mark></p><figure id="21a474a1-0192-8070-aba3-c7f9bd0b8a1f" dir="ltr"><a href="https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">CME FedWatch</div><div class="bookmark-description">Stay up-to-date with the latest probabilities of FOMC rate moves as implied by Fed Funds futures prices</div></div><div class="bookmark-href">https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html</div></div><img src="https://www.cmegroup.com/content/dam/cmegroup/markets/interest-rates/images/cme-fedwatch-tool-940x600.png" class="bookmark-image"/></a></figure><p id="227474a1-0192-8051-ba57-d96a6381c057" class="" dir="auto">
+</p><p id="216474a1-0192-802e-99bf-edebf57f1bba" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>경제지표 발표, 기업실적 쉽게 확인 : 인베스팅닷컴</strong></mark></p><figure id="216474a1-0192-8023-ae8f-ef44450e09b9" dir="ltr"><a href="https://kr.investing.com/economic-calendar/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">경제캘린더 - Investing.com</div><div class="bookmark-description">글로벌 주요 지표를 확인해 보세요. 어제, 오늘, 내일, 이번 주, 그리고 다음 주에 있을 경제 일정을 확인하고 금융시장에서 앞서 있으세요. 원하는 국가를 선택하거나 이벤트명을 검색해 원하는 결과를 확인해 보세요.</div></div><div class="bookmark-href"><img src="https://i-invdn-com.investing.com/logos/favicon.ico" class="icon bookmark-icon"/>https://kr.investing.com/economic-calendar/</div></div><img src="https://i-invdn-com.investing.com/redesign/images/seo/investing_300X300.png" class="bookmark-image"/></a></figure><figure id="220474a1-0192-8036-8035-e046e7511eee" dir="ltr"><a href="https://kr.investing.com/earnings-calendar/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">실적발표 캘린더 - Investing.com</div><div class="bookmark-description">당사의 실적 발표 캘린더를 이용하혀 전세계 기업들의 분기 및 연간 실적보고 예상치와 실제 발표치를 추적하십시오.</div></div><div class="bookmark-href"><img src="https://i-invdn-com.investing.com/logos/favicon.ico" class="icon bookmark-icon"/>https://kr.investing.com/earnings-calendar/</div></div><img src="https://i-invdn-com.investing.com/redesign/images/seo/investing_300X300.png" class="bookmark-image"/></a></figure><p id="220474a1-0192-8020-8106-e36114bf1fb5" class="" dir="auto">
+</p><p id="220474a1-0192-8039-a566-d24f925b12aa" class="" dir="auto">
+</p><h3 id="216474a1-0192-8061-bad8-ce5b5c7137db" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">관점 3. 인과관계의 중요성</mark></h3><p id="227474a1-0192-8016-b4f2-c533ddc836d7" class="" dir="auto">인과관계를 잘 알아야 경제 기사에 흔들리지 않는다.</p><p id="244474a1-0192-80a2-a491-c94f77203cb6" class="" dir="auto">원인과 결과가 상호 연관이 없는 잘못된 연결</p><p id="244474a1-0192-8081-8a0d-d106e799620a" class="" dir="auto">원인과 결과의 순서의 오류</p><p id="244474a1-0192-80d5-8b61-d69046904d97" class="" dir="auto">결과에 원인을 끼워 맞추기</p><p id="227474a1-0192-807c-9860-d88290ba0ded" class="" dir="auto">
+</p><p id="216474a1-0192-80d2-82f5-e885eb61b5a0" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><mark class="highlight-orange_background" data-notion-highlight="orange_background">금리</mark></mark>와 <mark class="highlight-red" data-notion-highlight="red"><mark class="highlight-orange_background" data-notion-highlight="orange_background">경제</mark></mark>의 인과관계?</p><p id="227474a1-0192-8024-91e3-e16dde404737" class="" dir="auto">
+</p><p id="216474a1-0192-8095-b44c-fdfd02e3b49b" class="" dir="auto">금리 인하기에 경기침체? VS 경기침체로 금리인하?</p><figure id="216474a1-0192-80c5-9da2-dee02e670c5e" dir="ltr"><a href="https://news.mt.co.kr/mtview.php?no=2025010714131475611" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">&quot;금리인하기에는 채권 투자라더니&quot;…美 장기채 ETF 마이너스 - 머니투데이</div><div class="bookmark-description">금리인하기 대표 투자처로 꼽히는 미국 장기채 ETF(상장지수펀드)가 수익률 마이너스 행진을 이어가고 있다. 미국 트럼프 행정부가 들어서는 데다 미국 경제가 나홀로 호조를 보이면서 장기 금리가 오히려 급등한 탓이다. 미국이 금리인하 속도 조절도 예고한 만큼 장기채 ETF 분할 매수로 변동성 대응에 나서야 한다는 조언이 나온다. 7일 코스콤 ETF체크에 따...</div></div><div class="bookmark-href"><img src="https://menu.mt.co.kr/common/favicons/favicon-180.ico" class="icon bookmark-icon"/>https://news.mt.co.kr/mtview.php?no=2025010714131475611</div></div><img src="https://thumb.mt.co.kr/21/2025/01/2025010714131475611_1.jpg" class="bookmark-image"/></a></figure><figure id="216474a1-0192-80d9-973a-d62bdb4422a1" dir="ltr"><a href="https://www.moneys.co.kr/article/2024123108301877748" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">[Asset] 긴축시계 멈췄다... 금리 인하기 &quot;주식·채권 바벨 들어라&quot; - 머니S</div><div class="bookmark-description">2025년 한국 금융시장은 대전환 시대를 맞았다. KB국민·신한·하나·NH농협·IBK기업은행 등 5대 은행의 프라이빗뱅커(PB)는 올해 에셋(Asset·자산) 포트폴리오를 리밸런싱해야 한다고 입을 모은다. 달라진 통화정책과 금융정책, 규제 변화에 대비하고 위험자산과 안</div></div><div class="bookmark-href"><img src="https://menu.moneys.co.kr/moneys/static/favicon_180.ico" class="icon bookmark-icon"/>https://www.moneys.co.kr/article/2024123108301877748</div></div><img src="https://menu.moneys.co.kr/moneyweek/thumb/2024/12/31/06/2024123108301877748_4.jpg" class="bookmark-image"/></a></figure><p id="227474a1-0192-80bb-877a-e169e76e84b7" class="" dir="auto">
+</p><p id="227474a1-0192-80fa-8489-d45e3445de70" class="" dir="auto">
+</p><p id="216474a1-0192-8060-9dc5-ea6c7ddb78e1" class="" dir="auto"><strong>장, 단기 금리차</strong></p><figure id="216474a1-0192-803c-9e74-c0f66f2b4681" dir="ltr"><a href="https://weekly.donga.com/economy/article/all/11/5391478/1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">미국 ‘AI 버블’ 붕괴 우려, 닷컴 버블 붕괴 직전과 닮았다</div><div class="bookmark-description">2025년 새해가 밝았다. 신년 모임에 참석할 때마다 꼭 받는 질문이 “올해 시장은 어떨 것 같은가”다. 질문 주제는 질문자의 관심 분야에 따라 국내주식, 채권, 해외주식, 금,…</div></div><div class="bookmark-href"><img src="https://weekly.donga.com/favicon.ico" class="icon bookmark-icon"/>https://weekly.donga.com/economy/article/all/11/5391478/1</div></div><img src="https://dimg1.donga.com/ugc/CDB/WEEKLY/Article/67/80/80/b4/678080b41fc6d2738250.jpg" class="bookmark-image"/></a></figure><figure id="216474a1-0192-8015-b62a-de3cb92efad2" dir="ltr"><a href="https://fred.stlouisfed.org/series/T10Y2Y" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">FRED Economic Data</div><div class="bookmark-description">10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity</div></div><div class="bookmark-href"><img src="https://fred.stlouisfed.org/favicon.ico" class="icon bookmark-icon"/>https://fred.stlouisfed.org/series/T10Y2Y</div></div><img src="https://fred.stlouisfed.org/graph/fredgraph.png?width=880&amp;height=440&amp;id=T10Y2Y" class="bookmark-image"/></a></figure><p id="216474a1-0192-80c7-833b-d71f3082197f" class="" dir="auto">기사만 보면 지금 경기침체가 올 시기임.</p><p id="227474a1-0192-80f3-bce6-e3cdbb057bd0" class="" dir="auto">
+</p><p id="227474a1-0192-8007-bcf3-ea11a614b318" class="" dir="auto"> </p><p id="244474a1-0192-80a7-a1c7-e9bf3ebe014c" class="" dir="auto">
+</p><p id="227474a1-0192-80bf-893e-d497c8c70af9" class="" dir="auto">이런 것을 이해하라.</p><p id="216474a1-0192-80a9-89d1-cad31154d624" class="" dir="auto">1. <mark class="highlight-red" data-notion-highlight="red">금리 인하</mark>(원인)가 <mark class="highlight-red" data-notion-highlight="red">경기침체</mark>(결과)를 부르는 경우</p><ul id="216474a1-0192-8055-9c50-e0d8ceea27b5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">장기 저금리로 인한 자산 버블 → 버블 붕괴시 경기침체</li></ul><ul id="216474a1-0192-80f6-a7ff-ce03df7e89d8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">저금리에도 경제 활성화 실패 → 경기 침체</li></ul><ul id="216474a1-0192-80ad-99b7-ceab395ad29f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">금융기관 수익성 악화 → 경제 부담(자금흐름 둔화, 기업 투자 제한, 가계 소비 위축)</li></ul><p id="244474a1-0192-80fb-90f2-e80afe251aa9" class="" dir="auto">
+</p><p id="216474a1-0192-808f-8fa7-d4e5379471c6" class="" dir="auto">2. <mark class="highlight-red" data-notion-highlight="red">경기침체</mark>(원인)로 <mark class="highlight-red" data-notion-highlight="red">금리를 내리</mark>(결과)는 경우</p><ul id="216474a1-0192-805a-a62d-f7ad797077d5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">경기침체 → 금리 인하로 경제 부양 목적</li></ul><ul id="216474a1-0192-8047-a649-d2d1c1c0d5e8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">실업률 상승, 기업 활동 둔화시 금리를 낮춰 경기 부양</li></ul><p id="227474a1-0192-80cc-b2d6-ee9f9021be37" class="" dir="auto">
+</p><p id="227474a1-0192-8012-be93-f6d3f92d2c26" class="" dir="auto"><strong>경기흐름 파악하기</strong></p><p id="227474a1-0192-808e-b254-f9499c42f9f7" class="" dir="auto">21년 인플레이션(경기확장 국면) → 22년 금리 인상(경기 긴축)</p><p id="227474a1-0192-8072-b2ab-cc29d707f337" class="" dir="auto">→ 23년~현재 <strong>금리 인하(인플레이션 하락, 경기 긴축 완화)</strong></p><p id="227474a1-0192-803d-96e3-e4082bfc25f1" class="" dir="auto">    - 트럼프 금리인하 압박, 유동성 공급, 기업 친화<br/>    - 주식 상승 지속 예상, 최근에는 고점 이슈<br/>    - 채권 시장보다 주식시장 좋음.</p><p id="227474a1-0192-8006-a1d6-e678d7c222f9" class="" dir="auto">29~30년 경기 침체국면 예상 : 저금리, 자금은 주식 → 채권</p><p id="227474a1-0192-8071-9c7e-d0b3385202ad" class="" dir="auto">
+</p><p id="227474a1-0192-80b9-a044-dc78e1fb7966" class="" dir="auto">
+</p><h3 id="216474a1-0192-8001-b7ec-fadfaaa9fcaa" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">관점 4. 시간의 차이</mark></h3><p id="244474a1-0192-8092-8287-debec6c1bee4" class="" dir="auto">
+</p><p id="244474a1-0192-80d4-a304-e58d4ebf2e4c" class="" dir="auto">경제기사는 ‘단기 흐름’을 다룰 수밖에 없다</p><ul id="244474a1-0192-8081-848e-e0a34874175b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">뉴스는 <strong>하루 단위 또는 주·월 단위의 단기 이슈</strong>에 집중될 수밖에 없다.</li></ul><ul id="244474a1-0192-805f-bf15-e5c113663107" class="bulleted-list" dir="auto"><li style="list-style-type:disc">주가는 시시각각 변하고, 경제지표도 수시로 발표되므로, <strong>단기적 해석과 설명 위주</strong>의 보도가 많다.</li></ul><ul id="244474a1-0192-8091-a95d-ce2baf63f44c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">이런 뉴스는 <strong>실제 시장의 본질이나 장기 흐름과는 다를 수 있음</strong>을 인지해야 한다</li></ul><p id="244474a1-0192-80f2-a21d-f09cf6c59bff" class="" dir="auto">
+</p><p id="244474a1-0192-8011-9800-d1e2c1e161ff" class="" dir="auto">이것을 인정하라</p><p id="244474a1-0192-80db-897e-fc9f2efe7b5e" class="" dir="auto">경제 뉴스는 단기 흐름을 전할 뿐이다. 그것이 <strong>진짜 방향성</strong>은 아닐 수 있다.</p><ul id="244474a1-0192-805e-acc9-feb7dfd5a973" class="bulleted-list" dir="auto"><li style="list-style-type:disc">뉴스는 <strong>참고자료</strong>일 뿐, 투자와 의사결정은 <strong>장기적 시야</strong>로 해야 한다.</li></ul><ul id="244474a1-0192-80d1-92ce-cdb4a75135d1" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>정보를 소비하는 태도</strong>가 중요하다:<ul id="244474a1-0192-80f9-8adb-e63efde7f4c4" class="bulleted-list" dir="auto"><li style="list-style-type:circle">“이 뉴스가 오늘 말하는 것 이상을 함축할 수 있는가?”</li></ul><ul id="244474a1-0192-8072-84e6-ec58681c621b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">“나의 투자 방향성과 상충하는가? 아니면 일시적 노이즈인가?”</li></ul></li></ul><p id="216474a1-0192-800c-a52d-c1f67fc0b657" class="" dir="auto">
+</p><p id="216474a1-0192-8025-b72a-f6c00f827595" class="" dir="auto">같은 시간이지만 사람마다 기간의 길이가 다르다.</p><p id="216474a1-0192-808a-af22-da2a3c9265e5" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">A는 당분간 떨어질거</mark>라 예측해서 안산다.</p><p id="244474a1-0192-8029-a8ca-da6decfe361f" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">B는 당분간 오를</mark>거라 예측해서 산다.</p><p id="244474a1-0192-807e-afa1-ca2b8f159a6d" class="" dir="auto">
+</p><p id="216474a1-0192-8010-be62-e8abe923ce8c" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">장기적인 흐름의 기준으로 기사를 봐야한다.</mark></p><p id="216474a1-0192-8067-98ee-e44833e07c1b" class="" dir="auto">누가 맞고 누가 틀리다 할 수 없다. 투자 성향이 다른것일 뿐</p><p id="216474a1-0192-8027-8a64-e34edefd539b" class="" dir="auto">장기 투자하는 사람은 당일의 단편적인 기사는 소음일 뿐.</p><p id="216474a1-0192-8049-80cc-d28919889a01" class="" dir="auto">긴 시간의 변화를 예측하려고 노력한다.</p><p id="39d474a1-0192-8063-9eaf-dabe5a617f64" class="" dir="auto">
+</p><p id="244474a1-0192-80b6-b9f9-c19d7808bc19" class="" dir="auto">(부동산 투자 여담)</p><p id="216474a1-0192-80f6-9249-d5ad993b5f65" class="" dir="auto">제가 주간 부동산 시황을 보는 이유는 시장 변화를 감지하기 위한 것.</p><p id="216474a1-0192-8036-a16c-e7c7a1d3b3cf" class="" dir="auto">있는 그대로 믿으려는 것 아님.</p><p id="216474a1-0192-803b-bf25-fbca691ff723" class="" dir="auto">
+</p><p id="216474a1-0192-80db-af33-d1b94d746f96" class="" dir="auto">아파트 가격이 전 지역이 동시에 변하지 않고,</p><p id="227474a1-0192-80b1-89e7-d31bd293ef61" class="" dir="auto">한 지역의 모든 아파트가 동시에 변하지 않음.</p><p id="216474a1-0192-8071-a642-fd9d448264a8" class="" dir="auto">흐름은 여러것이 모여 데이터로 나옴. </p><p id="216474a1-0192-80c2-bd7b-cda375a81862" class="" dir="auto">오르는 것, 멈춘 것, 떨어지는 것 → 이 것들이 합쳐서 데이터로 나옴. 그리고 뉴스 기사로 나옴.</p><p id="39d474a1-0192-80cb-8d87-c11b18a7023d" class="" dir="auto">
+</p><p id="39d474a1-0192-80b1-8ddd-ff77e67d2c00" class="" dir="auto">어떤 기업의 호재 → 뉴스에 나오면 이미 다 안다. 가격에 이미 반영 되어있음.</p><p id="216474a1-0192-80c3-a542-f8916a483fe1" class="" dir="auto">
+</p><p id="216474a1-0192-80c7-8a5a-e36b40df701b" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><mark class="highlight-orange_background" data-notion-highlight="orange_background">기사에서 이야기 하는 내용의 인과관계, 시간의 차이를 알고 읽자.</mark></mark></p><p id="227474a1-0192-8097-892e-f9b0245701ab" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><mark class="highlight-orange_background" data-notion-highlight="orange_background">흐름을 정리해 준 기사만 본다. 차라리 안보고 내가 지표를 보자.</mark></mark></p><p id="227474a1-0192-809e-8aad-c0615b506702" class="" dir="auto">
+</p><p id="227474a1-0192-8014-a73a-f8c355a679b1" class="" dir="auto">
+</p><h3 id="227474a1-0192-80b6-9ce9-c1e83c29f184" class="" dir="auto">그 동안 즐거웠습니다.</h3><p id="227474a1-0192-8066-ab6e-d8367afcfef2" class="" dir="auto">건강한 주식투자 시작 성공? 두려움 타파 했나요?</p><p id="227474a1-0192-809d-8a81-c5ed45c21af3" class="" dir="auto">
+</p><p id="227474a1-0192-809c-b564-e58e1c13be11" class="" dir="auto">
+</p><p id="227474a1-0192-80e4-8690-ef34b808cbb6" class="" dir="auto">리치군인클래스 후기 + 카페 후기 부탁해요.</p><p id="227474a1-0192-8002-a619-c3c6b2de677a" class="" dir="auto">후기 쓰시면 돈 더 잘 벌겁니다.</p><p id="227474a1-0192-80d6-9cec-c871501c9d9d" class="" dir="auto">
+</p><p id="227474a1-0192-808c-ac14-f08049031db4" class="" dir="auto">
+</p><p id="227474a1-0192-801b-94d8-e47c7be045c6" class="" dir="auto">
+</p><p id="227474a1-0192-80ee-8ba6-eb58248b63f7" class="" dir="auto">
+</p><p id="227474a1-0192-8048-aa60-fb5e935a35aa" class="" dir="auto">
+</p><p id="227474a1-0192-80fb-bb7d-dd0c1ae5a933" class="" dir="auto">
+</p><p id="227474a1-0192-80d6-886b-d6823e3eab4a" class="" dir="auto">
+</p><p id="227474a1-0192-8015-9423-f6e60608dc8b" class="" dir="auto">
+</p><p id="227474a1-0192-80ae-8509-c28be829f3da" class="" dir="auto">
+</p><p id="227474a1-0192-80b7-98f9-dc8fff39bd0e" class="" dir="auto">
+</p><p id="227474a1-0192-80f3-86e0-f0d923a08d3b" class="" dir="auto">
+</p><p id="227474a1-0192-8053-8ab2-f30eabe48055" class="" dir="auto">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

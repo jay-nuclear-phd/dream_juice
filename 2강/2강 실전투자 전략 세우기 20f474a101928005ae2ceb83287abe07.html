@@ -1,0 +1,838 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>2강  실전투자 전략 세우기</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+	/* Paint a complete callout box on every PDF page fragment. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="20f474a1-0192-8005-ae2c-eb83287abe07" class="page sans"><header><h1 class="page-title" dir="auto">2강  실전투자 전략 세우기</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://app.notion.com/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Created</th><td><time datetime="2025-06-11T12:03">June 11, 2025 12:03 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://app.notion.com/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><figure id="24d474a1-0192-8012-a44c-f80b120f47c6" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg"><img style="width:709.9857788085938px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg"/></a></figure><h1 id="20f474a1-0192-8042-975d-f8e112437068" class="" dir="auto">2강   미국주식 실전투자 전략 세우기</h1><p id="20f474a1-0192-80cd-989b-eec46800b728" class="" dir="auto">
+</p><p id="20f474a1-0192-8089-b1da-e6fe87f0343f" class="" dir="auto">이 스터디는 지식 전달이 아니라<br/><mark class="highlight-red" data-notion-highlight="red"><mark class="highlight-orange_background" data-notion-highlight="orange_background">실천을 위한 멘토형</mark></mark> 스터디 </p><p id="213474a1-0192-80cd-933e-c9333a39900b" class="" dir="auto">
+</p><p id="213474a1-0192-8096-8600-c3ce52eb1bce" class="" dir="auto">첫 주식투자 행동하기 어렵고 두렵기 때문에</p><p id="213474a1-0192-806c-bfae-d3b8dd1ae8ae" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">목표 시각화, 행동의 구체화</mark>를 통해 자신감 갖기</p><p id="213474a1-0192-80be-976b-c02d7102dc29" class="" dir="auto">
+</p><p id="20f474a1-0192-801e-840d-d938d38745f6" class="" dir="auto">목표, 최종상태 : 건강한 주식투자 전략 완성과 행복한 투자 개시</p><p id="254474a1-0192-80b5-8c1d-d8d421e30bb0" class="" dir="auto">
+</p><p id="250474a1-0192-80c0-9b7c-fdf3d78c5c7e" class="" dir="auto">드림주스는 “건강하고 행복한 투자” 추구</p><p id="250474a1-0192-80be-9d22-fc26b7691386" class="" dir="auto">건강한 투자 방식 + 행복한 투자 심리 → 투자 위험과 스트레스를 최소화하여 본업에 충실하자.</p><p id="250474a1-0192-8039-aa76-f00cb1b7308c" class="" dir="auto">
+</p><p id="250474a1-0192-805f-843f-d93c3545030f" class="" dir="auto">
+</p><p id="20f474a1-0192-80bc-a0f4-fa573f85c9bd" class="" dir="auto">6하 원칙에 맞춰 전략을 완성한다.</p><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="/icons/dialogue_gray.svg" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="213474a1-0192-809d-bc1e-e0fec807efdf" dir="ltr"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://app.notion.com/icons/dialogue_gray.svg"/></div><div style="width:100%"><p id="213474a1-0192-80bb-a7c5-d20530e1f8bd" class="" dir="auto"><mark class="highlight-default" data-notion-highlight="default"><mark class="highlight-orange_background" data-notion-highlight="orange_background"><strong>6억 이상의 주식 자산을 형성하여  전역 전 월 200만원 수익을 위해</strong></mark></mark><mark class="highlight-default_background" data-notion-highlight="default_background">(왜)</mark>,</p><p id="213474a1-0192-8058-9033-eb48cbc2b413" class="" dir="auto"><mark class="highlight-orange_background" data-notion-highlight="orange_background"><strong>0년간 월 100만원 투자 가능한 나는</strong></mark><mark class="highlight-default_background" data-notion-highlight="default_background">(누가)</mark>, <mark class="highlight-orange_background" data-notion-highlight="orange_background"><strong>매월 </strong></mark><mark class="highlight-default_background" data-notion-highlight="default_background">(언제)</mark>, <mark class="highlight-orange_background" data-notion-highlight="orange_background"><strong>내 계좌로</strong></mark><mark class="highlight-default_background" data-notion-highlight="default_background">(어디서)</mark>, <mark class="highlight-orange_background" data-notion-highlight="orange_background"><strong>QQQ를</strong></mark><mark class="highlight-default_background" data-notion-highlight="default_background">(무엇을)</mark>,</p><p id="213474a1-0192-800c-a4fe-d161e1c53d23" class="" dir="auto"><mark class="highlight-orange_background" data-notion-highlight="orange_background"><strong>1,000만원을 거치하고 월 100만원을 매수</strong></mark><mark class="highlight-default_background" data-notion-highlight="default_background">(어떻게) </mark>하겠다. </p></div></aside><p id="20f474a1-0192-8067-9172-c5fe8167079a" class="" dir="auto">
+</p><p id="20f474a1-0192-8079-a179-c472fcbb4111" class="" dir="auto"><strong>왜?</strong>  주식 투자 목적, 목표 정립 → 상황에 따라 흔들리지 않는 마인드를 위한 전략수립의 기초</p><p id="20f474a1-0192-809a-975f-e9c8ca7027bf" class="" dir="auto"><strong>누가?</strong>   자산과 현금흐름의 메타인지(구체적인 자신의 상태, 000만원 월급받는 군인) → 전략의 실효성 확보</p><p id="20f474a1-0192-80cc-bd67-f8769e6a476f" class="" dir="auto"><strong>무엇을?</strong>   우량자산 선정 → 1강 때 강조</p><p id="20f474a1-0192-808b-81fd-ec71121394eb" class="" dir="auto"><strong>언제?</strong>   상승장, 하락장, 상승이나 하락 관계없이 등 상황에 따른 투자 방식을 설정하기 위함</p><p id="20f474a1-0192-804c-acc7-cc8b0e375077" class="" dir="auto"><strong>어떻게?</strong>   투자행동 결정</p><p id="20f474a1-0192-80c8-b6fa-cce7f0f31b3c" class="" dir="auto">       매수방법 : 정한 주기(매월, 매주 등)에 매수, 거치식 투자, 거치식 + 조정시 분할매수</p><p id="20f474a1-0192-802f-a325-d361bbd23833" class="" dir="auto">       리스크 관리 : 현금비율 유지(월급 모으기, 단기고점 일부 수익실현)</p><p id="20f474a1-0192-80f6-980e-dfc56eb2c543" class="" dir="auto">       기간 : 3년 이상 장기투자</p><p id="20f474a1-0192-8061-bdab-c4052805078e" class="" dir="auto"><strong>어디서?</strong>   내 계좌, 배우자 및 자녀계좌</p><p id="213474a1-0192-80e0-a063-fe98074f8124" class="" dir="auto">
+</p><p id="20f474a1-0192-8026-b69f-f0a4ce2e395d" class="" dir="auto">부산 대표음식 돼지국밥</p><p id="213474a1-0192-808e-bbbe-c7316e09df37" class="" dir="auto">“최고는 없다. 최애만 있을 뿐”</p><p id="213474a1-0192-80a3-b258-f349de7083f9" class="" dir="auto">
+</p><p id="213474a1-0192-80aa-9016-d27f62d3c967" class="" dir="auto">영화 승부</p><p id="213474a1-0192-80bb-887e-e950dc75c358" class="" dir="auto">“답이 없지만, 답을 찾기 위해 노력하는게 바둑이다”</p><h3 id="213474a1-0192-80c8-b2b9-e55d5bc699e5" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">나만의 투자전략과 원칙이 필요</mark></h3><p id="27e474a1-0192-80bc-951f-cf8b8cd982a1" class="" dir="auto">
+</p><hr id="250474a1-0192-80a8-ada8-ce3f7399e51d" dir="auto"/><p id="250474a1-0192-807e-b63f-efeb8805975d" class="" dir="auto">
+</p><h3 id="213474a1-0192-8092-a790-cf5d80a832c3" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>1. 왜? </strong></mark></h3><p id="213474a1-0192-803b-a0e8-c49280ff4503" class="" dir="auto"> 일반인 vs 투자 거장 – 투자 목적 중심 비교</p><table id="213474a1-0192-804a-b702-fa0ae1b4586e" class="simple-table" dir="ltr"><tbody><tr id="213474a1-0192-8009-8a50-f7cd2a3ebcd6" dir="ltr"><td id="rLER" class="">항목</td><td id="f~o=" class="" style="width:223.1732940673828px">일반인 투자자</td><td id="b_rG" class="" style="width:240.92897033691406px">투자 거장</td><td id="M;^a" class="">체크</td></tr><tr id="213474a1-0192-8075-8d4f-de32859f9f6d" dir="ltr"><td id="rLER" class=""><strong>목표 지향점</strong></td><td id="f~o=" class="" style="width:223.1732940673828px">월급 외 부수입, 단기 수익 / 시세 차익</td><td id="b_rG" class="" style="width:240.92897033691406px"><mark class="highlight-red" data-notion-highlight="red">장기 복리 성장자산 증식과 경제적 자유</mark></td><td id="M;^a" class=""></td></tr><tr id="213474a1-0192-8054-9b4f-eda787b082ac" dir="ltr"><td id="rLER" class=""><strong>투자 기간 인식</strong></td><td id="f~o=" class="" style="width:223.1732940673828px">단기 중심 (몇 일~몇 달)<br/>“빨리 벌고 나올 수 없을까?”</td><td id="b_rG" class="" style="width:240.92897033691406px"><mark class="highlight-red" data-notion-highlight="red">장기 중심 (수년~수십 년)</mark><strong><br/></strong>“좋은 기업과 함께 자라자”</td><td id="M;^a" class=""></td></tr><tr id="213474a1-0192-80e9-9386-d61eade3752d" dir="ltr"><td id="rLER" class=""><strong>관심 포인트</strong></td><td id="f~o=" class="" style="width:223.1732940673828px">‘지금 오를까?’ <br/>‘이 종목 잘 오를까?’</td><td id="b_rG" class="" style="width:240.92897033691406px">‘이 기업은 미래에도 돈을 벌까?’<br/>‘내 돈이 이 회사와 함께 클까?’</td><td id="M;^a" class=""></td></tr><tr id="213474a1-0192-803a-a14b-e4b20e3e8015" dir="ltr"><td id="rLER" class=""><strong>결과 기준</strong></td><td id="f~o=" class="" style="width:223.1732940673828px"><strong>단기 수익</strong><br/>“이번 달 얼마나 벌었지?”</td><td id="b_rG" class="" style="width:240.92897033691406px"><mark class="highlight-red" data-notion-highlight="red"><strong>복리 자산 성장</strong></mark><mark class="highlight-red" data-notion-highlight="red"><br/></mark> “5년 후 얼마나 커질까?”</td><td id="M;^a" class=""></td></tr><tr id="213474a1-0192-803d-9702-d23ea683443f" dir="ltr"><td id="rLER" class=""><strong>투자 성찰</strong></td><td id="f~o=" class="" style="width:223.1732940673828px">“왜 또 손해봤지?”<br/>결과에 따라 감정 기복</td><td id="b_rG" class="" style="width:240.92897033691406px"><mark class="highlight-red" data-notion-highlight="red">“이번 투자에서 무엇을 배웠나?”<br/></mark>과정과 원칙에 집중</td><td id="M;^a" class=""></td></tr><tr id="213474a1-0192-80de-8ebc-e002f61ea5ac" dir="ltr"><td id="rLER" class=""><strong>장기적 비전</strong></td><td id="f~o=" class="" style="width:223.1732940673828px">부업처럼 접근<br/>→ 수익 나면 좋고 안 나면 그만</td><td id="b_rG" class="" style="width:240.92897033691406px">경제적 독립 / 자본가 마인드<br/>→ 투자 자체가 삶의 철학</td><td id="M;^a" class=""></td></tr></tbody></table><p id="213474a1-0192-80a4-a01f-c42b1bd46f2d" class="" dir="auto">투자 거장처럼 생각하고, 투자 목적을 결정하기</p><p id="213474a1-0192-8020-865f-d5083fc36e82" class="" dir="auto"><span style="border-bottom:0.05em solid">전역 후 경제적 자유 이루기, 부동산 투자에 필요한 자산 불리기, 자녀 자산 불리기, 인플레이션에 부모님 자산 보존<br/></span>투자 목적에 따라 투자 기간, 투자 종목, 투자 방식이 달라진다.</p><p id="213474a1-0192-800d-942e-d01b9e55da22" class="" dir="auto">
+</p><h3 id="20f474a1-0192-8015-8847-d8be00591471" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>2. 누가?</strong></mark></h3><h3 id="20f474a1-0192-809d-9fcf-fdadd51eb802" class="" dir="auto">자산 메타인지<br/>나는 주식투자를 얼마나 할 수 있는가?</h3><p id="213474a1-0192-8042-9f48-f19001e8c808" class="" dir="auto">투자 목적(왜?)에 맞는 투자 자금을 결정한다.</p><p id="213474a1-0192-801f-8c4a-f5cd1a1bb907" class="" dir="auto">
+</p><p id="20f474a1-0192-8037-ba02-c667d8ca7710" class="" dir="auto">예시)</p><p id="20f474a1-0192-80dd-9366-d4e6d5fbf35a" class="" dir="auto">보유자금 : 군인공제회 5,000만원, 적금 2,000만원</p><p id="249474a1-0192-8057-9f9f-cc406fab2f40" class="" dir="auto">   → (결정) 투자자금은 군인공제회 3,000만원 대출 + 적금 2,000만원 = <mark class="highlight-red" data-notion-highlight="red">5,000만원</mark></p><p id="20f474a1-0192-80ff-aede-e353ad31801d" class="" dir="auto">월급 : 현금흐름표 작성, 월 300만원 중 군인공제회 70만원, 생활비 230만원</p><p id="249474a1-0192-80fd-929d-c0ca803343ab" class="" dir="auto">   → (결정) 월 300만원 중 군인공제회 20만원, <mark class="highlight-red" data-notion-highlight="red">주식 80만원</mark>, 생활비 200만원</p><p id="249474a1-0192-8099-9465-d1f2cd554990" class="" dir="auto">
+</p><figure id="213474a1-0192-80ad-b689-d2a186927a16" dir="ltr"><a href="https://rich9nin.imweb.me/34/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=164913345&amp;t=board" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">리치비의 현금흐름표</div><div class="bookmark-description">현금흐름표 엑셀 파일입니다.</div></div><div class="bookmark-href"><img src="https://cdn.imweb.me/thumbnail/20250526/08cfd190b810f.png" class="icon bookmark-icon"/>https://rich9nin.imweb.me/34/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=164913345&amp;t=board</div></div></a></figure><p id="213474a1-0192-809a-b91d-fedf1685938c" class="" dir="auto">
+</p><h3 id="20f474a1-0192-8055-a7e1-d76b565a5cbd" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>3. 무엇을? (생략)</strong></mark></h3><p id="20f474a1-0192-8087-ac85-e013dea6df29" class="" dir="auto">
+</p><h3 id="20f474a1-0192-80d0-a480-e8d13d697995" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>4. 언제?</strong></mark></h3><p id="254474a1-0192-8038-9647-cae89440c6b0" class="" dir="auto">
+</p><p id="238474a1-0192-80f0-824e-f062ed324476" class="" dir="auto">타이밍 재는 대신, 정기적으로 투자하면 리스크 분산 가능</p><p id="213474a1-0192-80af-92ae-d3de4ae03e0c" class="" dir="auto">상승장 중 조정 시, 하락장 시 매수하면 더 좋은 수익률(단점은 상.하락장 구분 어려움, 하락이 언제올지 모름.)</p><p id="250474a1-0192-8052-bdd4-e5487c911c19" class="" dir="auto">
+</p><h3 id="20f474a1-0192-80aa-b136-d4d0cb851485" class="" dir="auto">실전에서 상승장, 하락장을 판단하는 실마리</h3><p id="213474a1-0192-80aa-846d-f9e926d9e6e4" class="" dir="auto">
+</p><p id="213474a1-0192-8099-bb99-e7298b79b461" class="" dir="auto"><strong>1️⃣ 지수 변동률 : 만약 S&amp;P지수가 -20%라면 매우 좋은 기회!</strong></p><figure id="213474a1-0192-807a-b328-d753fe188896" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.58.22.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.58.22.jpg"><img style="width:2196px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.58.22.jpg"/></a></figure><p id="213474a1-0192-8055-9d4c-c131e7d8680a" class="" dir="auto">
+</p><p id="213474a1-0192-8025-ad36-ea8957240751" class="" dir="auto"><strong>2️⃣ 경제지표 확인 : 인플레이션 지수, 금리변동, 실업률, 기업실적</strong></p><p id="213474a1-0192-8043-96f1-f0e8e2e518ba" class="" dir="auto">지수가 떨어졌는데 경제지표가 양호하면, 지수는 회복한다.</p><p id="213474a1-0192-80ec-8232-e8066f67f869" class="" dir="auto">
+</p><p id="213474a1-0192-8000-a7f4-c750dc4d8de8" class="" dir="auto"><strong>3️⃣ 200일선 : 위는 상승장 아래는 하락장</strong></p><div id="213474a1-0192-8080-8930-fc1078a0e987" class="column-list" data-notion-column-list="" dir="auto"><div id="213474a1-0192-80c2-8421-d14a7e6d3aba" style="width:50.000000000000014%" class="column" data-notion-column-ratio="0.5000000000000001" dir="auto"><figure id="213474a1-0192-8001-baba-ef0af2f1b135" class="image" data-notion-image="90a4b865-82e5-429a-a493-45bbe3c40c84.png" dir="ltr"><a href="90a4b865-82e5-429a-a493-45bbe3c40c84.png"><img style="width:240px" src="90a4b865-82e5-429a-a493-45bbe3c40c84.png"/></a></figure></div><div id="213474a1-0192-80ef-a43b-dea69b745cb6" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="213474a1-0192-808b-a8cf-e08c72e29c20" class="image" data-notion-image="IMG_9102.png" dir="ltr"><a href="IMG_9102.png"><img style="width:709.9857788085938px" src="IMG_9102.png"/></a></figure></div></div><p id="213474a1-0192-8090-8a95-db837048f73b" class="" dir="auto">
+</p><p id="213474a1-0192-8010-93eb-cedb2634672e" class="" dir="auto"><strong>4️⃣ 시장 심리지수 참고 : CNN Fear &amp; Greed Index</strong></p><ul id="213474a1-0192-8036-87c5-f1a64f0d0683" class="bulleted-list" dir="auto"><li style="list-style-type:disc">공포(Extreme Fear)면 하락장, 탐욕(Greed)이면 상승장</li></ul><figure id="213474a1-0192-802b-98e4-cd80528c41b1" dir="ltr"><a href="https://edition.cnn.com/markets/fear-and-greed?utm_source=hp" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Fear and Greed Index - Investor Sentiment | CNN</div><div class="bookmark-description">CNN’s Fear &amp; Greed Index is a way to gauge stock market movements and whether stocks are fairly priced. The index uses seven market indicators to help answer the question: What emotion is driving the market now?</div></div><div class="bookmark-href"><img src="https://edition.cnn.com/media/sites/cnn/apple-touch-icon.png" class="icon bookmark-icon"/>https://edition.cnn.com/markets/fear-and-greed?utm_source=hp</div></div><img src="https://cdn.cnn.com/cnnnext/dam/assets/211111124245-fear-and-greed-share-super-tease.jpg" class="bookmark-image"/></a></figure><figure id="213474a1-0192-8088-972a-da46c1791aa1" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.39.39.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.39.39.jpg"><img style="width:2088px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.39.39.jpg"/></a></figure><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="/icons/dialogue_gray.svg" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="213474a1-0192-80a4-879e-d453d7283656" dir="ltr"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://app.notion.com/icons/dialogue_gray.svg"/></div><div style="width:100%"><p id="213474a1-0192-806c-815e-cc768a282a6d" class="" dir="auto"><strong>두려움과 탐욕 지수 FAQ</strong></p><p id="213474a1-0192-8051-9a45-e60f53248c2e" class="" dir="auto"><strong>CNN 비즈니스 공포·탐욕 지수란 무엇인가?</strong></p><p id="213474a1-0192-800b-83a6-ee1c7b8fd75f" class="" dir="auto">공포·탐욕 지수는 주식 시장의 움직임과 주가가 적정한지 여부를 측정하는 지표입니다. 이 이론은 과도한 공포는 주가를 하락시키는 경향이 있고, 과도한 탐욕은 그 반대의 효과를 낳는다는 논리에 기반합니다.</p><p id="213474a1-0192-80c6-8e8f-dc09652b134e" class="" dir="auto"><strong>두려움과 탐욕은 어떻게 계산되는가?</strong></p><p id="213474a1-0192-80bd-9e4f-e29c4ad1f378" class="" dir="auto">공포와 탐욕 지수는 주식 시장의 움직임을 측정하는 7가지 지표를 종합한 것입니다. 시장 모멘텀, 주가 강세, 주가 폭, 풋옵션 및 콜옵션, 정크본드 수요, 시장 변동성, 그리고 안전자산 수요입니다. 이 지수는 각 지표가 평균값에서 얼마나 벗어나는지, 그리고 일반적인 변동폭과 얼마나 차이가 나는지를 측정합니다. 각 지표에 동일한 가중치를 부여하여 0에서 100까지의 점수를 부여하며, 100은 최대 탐욕을, 0은 최대 공포를 나타냅니다.</p><p id="213474a1-0192-80bf-bfd2-ddec10e2b888" class="" dir="auto"><strong>두려움과 탐욕 지수는 얼마나 자주 계산됩니까?</strong></p><p id="213474a1-0192-807b-8a69-d03e9dae7bea" class="" dir="auto">모든 구성 요소와 지수는 새로운 데이터가 나오는 즉시 계산됩니다.</p><p id="213474a1-0192-8017-a676-d2f42938bb14" class="" dir="auto"><strong>두려움과 탐욕 지수를 어떻게 사용하나요?</strong></p><p id="213474a1-0192-8011-86d8-f0eda73632f8" class="" dir="auto">공포·탐욕 지수는 시장 분위기를 가늠하는 데 사용됩니다. 많은 투자자가 감정적이고 반응적인 성향을 보이는데, 공포·탐욕 지수는 투자자에게 자신의 감정과 편견을 인지시켜 투자 결정에 영향을 미칠 수 있습니다. 펀더멘털 지표 및 기타 분석 도구와 함께 활용하면 공포·탐욕 지수를 시장 분위기를 파악하는 데 도움이 될 수 있습니다.</p></div></aside><p id="213474a1-0192-80d5-a886-d1c1e225fd40" class="" dir="auto">
+</p><p id="213474a1-0192-80d3-b0e9-e59166276870" class="" dir="auto"><strong>주가와 공포 탐욕지수(24년 7월 ~ 25년 6월)</strong></p><figure id="213474a1-0192-80a3-9947-d11a6f141c22" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.00.39.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.00.39.jpg"><img style="width:709.9857788085938px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.00.39.jpg"/></a></figure><p id="249474a1-0192-8086-9d9c-f198a56a9a7e" class="" dir="auto">
+</p><h3 id="20f474a1-0192-8054-84a7-da584fde2f12" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>5. 어떻게?</strong></mark></h3><p id="20f474a1-0192-8047-995c-c86dd095df6f" class="" dir="auto">투자 방식 3종 세트</p><table id="20f474a1-0192-80c2-9f5a-c44019060ce6" class="simple-table" dir="ltr"><tbody><tr id="20f474a1-0192-8097-b5a4-ce4b7164e702" dir="ltr"><td id="F=VL" class="">투자방식</td><td id="?h[K" class="" style="width:165.0113525390625px">설명</td><td id="mr&gt;I" class="" style="width:157.83663940429688px">장점</td><td id="Z{&gt;m" class="">단점</td><td id="Hp?Q" class="" style="width:146.25283813476562px">적절한 시기</td></tr><tr id="20f474a1-0192-80b7-850d-f77893fb944c" dir="ltr"><td id="F=VL" class="">적립식 분할매수</td><td id="?h[K" class="" style="width:165.0113525390625px">매주, 매월<br/>일정금액 투자<br/>(매수 요일과 시간도 결정)</td><td id="mr&gt;I" class="" style="width:157.83663940429688px">리스크 분산, 심리적 안정<br/>월급을 적금과 유사</td><td id="Z{&gt;m" class="">수익도 분산</td><td id="Hp?Q" class="" style="width:146.25283813476562px">신경안쓰고 장기투자</td></tr><tr id="20f474a1-0192-804a-804e-d89ee818f47b" dir="ltr"><td id="F=VL" class="">거치식 투자</td><td id="?h[K" class="" style="width:165.0113525390625px">한 번에 넣고 기다림</td><td id="mr&gt;I" class="" style="width:157.83663940429688px">상승기 수익률 집중</td><td id="Z{&gt;m" class="">하락기 손실 확대,<br/>심리적 불안</td><td id="Hp?Q" class="" style="width:146.25283813476562px">조정 심할시<br/>(지수 10% 이상 하락)</td></tr><tr id="20f474a1-0192-8078-80ec-e51781ecf6d1" dir="ltr"><td id="F=VL" class="">혼합식</td><td id="?h[K" class="" style="width:165.0113525390625px">거치 + 조정장 분할매수</td><td id="mr&gt;I" class="" style="width:157.83663940429688px">장.단점 절충<br/></td><td id="Z{&gt;m" class="">장.단점 절충</td><td id="Hp?Q" class="" style="width:146.25283813476562px">상승장</td></tr></tbody></table><p id="20f474a1-0192-8095-9a27-f04312ede44f" class="" dir="auto">(혼합식 투자전략)</p><ul id="20f474a1-0192-80ab-b2d8-ccad94b44022" class="bulleted-list" dir="auto"><li style="list-style-type:disc">투자결정 자금의 50% 일정기간 분할매수</li></ul><ul id="20f474a1-0192-80ba-889c-f4b9f68b0cd4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">월급 투자 결정자금, 매월 CMA 모으기 </li></ul><ul id="20f474a1-0192-80e7-a840-e9b7a9c65046" class="bulleted-list" dir="auto"><li style="list-style-type:disc">CMA 모은 자금을 지수 5~10% 이상 하락시 분할매수</li></ul><ul id="20f474a1-0192-80a7-a64e-db122eb5eb71" class="bulleted-list" dir="auto"><li style="list-style-type:disc">시장 하락 심할시 추가 매수로 평균단가 낮추기</li></ul><p id="20f474a1-0192-808a-ba24-fc0e94745482" class="" dir="auto">
+</p><p id="210474a1-0192-8072-a8ce-c4a1823fc2b8" class="" dir="auto">수익률을 높이는 가장 확실한 방법은</p><p id="210474a1-0192-80a9-95de-f25754e4bbe7" class="" dir="auto">주가가 떨어졌을 때 최대한 많이 사서 오래 가지고 있는 것이다.</p><p id="210474a1-0192-8081-b52c-f9dbd17c61ad" class="" dir="auto">
+</p><p id="20f474a1-0192-805b-9ea3-eb7391c2d251" class="" dir="auto">2023년 ~ 2024년 상승장, 2025년 </p><p id="210474a1-0192-80b2-8895-e479abebdb87" class="" dir="auto">QQQ가 -7% 이상 떨어진 구간</p><figure id="210474a1-0192-80d8-9100-da5ad4d5f89e" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_7.18.06.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_7.18.06.jpg"><img style="width:2200px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_7.18.06.jpg"/></a></figure><p id="27e474a1-0192-8032-b07b-e65a602752ad" class="" dir="auto">
+</p><p id="20f474a1-0192-8039-af94-eb963deca6bb" class="" dir="auto">
+</p><p id="20f474a1-0192-80aa-8b85-d9c99b25920e" class="" dir="auto"><strong>리스크 관리</strong></p><p id="20f474a1-0192-80c8-964e-ee079a2be995" class="" dir="auto">① 현금 비율 유지</p><ul id="20f474a1-0192-8001-9e4f-f61f272779de" class="bulleted-list" dir="auto"><li style="list-style-type:disc">투자자금의 일정 비율은 항상 예비자금으로 보유 (예: 20~30%)</li></ul><p id="210474a1-0192-80da-85f9-feee80c779db" class="" dir="auto">② 수익 실현 전략 (현금비율 부족시 일부 익절)</p><ul id="277474a1-0192-8050-9bf2-e9525ace2cb4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">되도록 자제하고 현금이 없을 때만 실시, ETF는 장기보유 하여 큰 상승을 모두 취해야 함.</li></ul><p id="219474a1-0192-80ca-a609-ea496562f053" class="" dir="auto">
+</p><p id="219474a1-0192-8099-be95-e0cc7ee5c29b" class="" dir="auto">리밸런싱의 주기는 투자자의 상황에 따라 다를 수 있지만, 일반적으로 6개월에서 1년에 한 번 정도가 적당합니다. 또는 특정 자산의 비중이 처음 설정한 비율에서 5% 이상 벗어날 때 리밸런싱을 하는 방법도 있습니다. 이는 마치 정기적으로 건강검진을 받고 필요한 경우 생활 습관을 조정하는 것과 비슷합니다. 다만, 너무 자주 리밸런싱을 하면 거래 비용이 증가할 수 있으므로 주의가 필요합니다.<br/>&lt;미국 주식 투자를 위한 존 보글의 인덱스 펀드 철학&gt;, 이민혁 - 밀리의 서재</p><p id="249474a1-0192-80ec-be02-e5f0bcb0d989" class="" dir="auto">
+</p><p id="210474a1-0192-80df-b661-da40ab9c661d" class="" dir="auto">2020–2024 ETF 투자 종목별, 방식별 수익 비교</p><table id="249474a1-0192-8052-b8fe-d68ce5a2552d" class="simple-table" dir="ltr"><tbody><tr id="249474a1-0192-808f-bbd2-ea7a2cd00265" dir="ltr"><td id="xv~z" class="">ETF</td><td id="xaRR" class="">투자금</td><td id="cBRW" class="">적립식 투자</td><td id="?qIB" class="">거치식 투자</td></tr><tr id="249474a1-0192-803c-a465-c0684788c52c" dir="ltr"><td id="xv~z" class=""><strong>SPY</strong></td><td id="xaRR" class="">61,000달러</td><td id="cBRW" class="">100,452달러</td><td id="?qIB" class="">119,880달러</td></tr><tr id="249474a1-0192-805e-b3e6-f5e4a2c2ed36" dir="ltr"><td id="xv~z" class=""><strong>QQQ</strong></td><td id="xaRR" class="">61,000달러</td><td id="cBRW" class="">107,636달러</td><td id="?qIB" class="">151,449달러</td></tr></tbody></table><p id="249474a1-0192-80bc-af5b-e67afe9bbba4" class="" dir="auto">
+</p><p id="249474a1-0192-80dc-a03e-e3eb842ea874" class="" dir="auto">QQQ 적립식 VS QQQ 거치식</p><div id="249474a1-0192-8064-a486-d6b4cfb28f44" class="column-list" data-notion-column-list="" dir="auto"><div id="249474a1-0192-80bf-8363-e65ac1866c99" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><p id="249474a1-0192-809d-899d-f91dcba47a68" class="" dir="auto">SPY적립식<strong>(매월 1,000달러, 61회 / 20년~24년)</strong></p><figure id="249474a1-0192-8040-96d3-caa18a02f1b9" class="image" data-notion-image="SPY_%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%B5%E1%86%A8.jpg" dir="ltr"><a href="SPY_%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%B5%E1%86%A8.jpg"><img style="width:709.9715576171875px" src="SPY_%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%85%E1%85%B5%E1%86%B8%E1%84%89%E1%85%B5%E1%86%A8.jpg"/></a></figure><p id="36c474a1-0192-8044-b3e5-dcdad3ecdb81" class="" dir="auto">
+</p></div><div id="249474a1-0192-8087-b7ce-e0734c64fb3d" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><p id="249474a1-0192-802e-8a62-c764195ec8a6" class="" dir="auto">SPY거치식<strong>(61,000달러 / 20년~24년)</strong></p><figure id="249474a1-0192-80fb-a981-edf0b38c24cf" class="image" data-notion-image="SPY_%E1%84%80%E1%85%A5%E1%84%8E%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8.jpg" dir="ltr"><a href="SPY_%E1%84%80%E1%85%A5%E1%84%8E%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8.jpg"><img style="width:709.9786376953125px" src="SPY_%E1%84%80%E1%85%A5%E1%84%8E%E1%85%B5%E1%84%89%E1%85%B5%E1%86%A8.jpg"/></a></figure></div></div><div id="27e474a1-0192-8096-81af-d5a1853b93ec" class="column-list" data-notion-column-list="" dir="auto"><div id="27e474a1-0192-8038-80fb-d55f45767d6e" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><p id="249474a1-0192-80d7-8ad7-c80bc5578c5a" class="" dir="auto"><strong>QQQ 적립식</strong></p><figure id="249474a1-0192-80a8-a01b-e0e5cdc4a5b3" class="image" data-notion-image="0ddfed69-e347-4a92-b54b-f2c22e581063.png" dir="ltr"><a href="0ddfed69-e347-4a92-b54b-f2c22e581063.png"><img style="width:670.7473309608541px" src="0ddfed69-e347-4a92-b54b-f2c22e581063.png"/></a></figure></div><div id="27e474a1-0192-8036-b6fc-c8ad0777b5b1" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><p id="249474a1-0192-80a9-b546-e7a7a945cff9" class="" dir="auto"><strong>QQQ 거치식</strong></p><figure id="249474a1-0192-80b3-8c62-ebd871d37e9c" class="image" data-notion-image="2703e618-faca-4503-bb1a-1f799e937341.png" dir="ltr"><a href="2703e618-faca-4503-bb1a-1f799e937341.png"><img style="width:606.4335664335664px" src="2703e618-faca-4503-bb1a-1f799e937341.png"/></a></figure></div></div><p id="249474a1-0192-805c-98c0-e1e910d1a4a4" class="" dir="auto">
+</p><h3 id="20f474a1-0192-8053-b48c-d1582d82ae4e" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>6. 어디서?</strong></mark></h3><h3 id="213474a1-0192-80b6-b641-c2a19c35305f" class="" dir="auto"><strong>자녀(배우자)에게 증여 방식 비교</strong></h3><p id="213474a1-0192-8047-9ead-d96e72798a8c" class="" dir="auto"><em>(2천만 원 → 1억 수익 가정, 자녀는 미성년자)</em></p><table id="213474a1-0192-8027-ae34-dd572bc20ed1" class="simple-table" dir="ltr"><tbody><tr id="213474a1-0192-80e7-89f9-e30e35039ae1" dir="ltr"><td id="kVz`" class="">구분</td><td id="Zbo&lt;" class=""><strong>현금 증여(2천 → 1억)</strong></td><td id="{fx^" class="" style="width:269.99998474121094px"><strong>주식 증여(1억)</strong></td></tr><tr id="213474a1-0192-80c0-8ca7-e9ff79616b91" dir="ltr"><td id="kVz`" class=""><strong>증여세</strong></td><td id="Zbo&lt;" class="">없음 (미성년자 공제 2천만 원 이내)</td><td id="{fx^" class="" style="width:269.99998474121094px">2천 공제, 8천 과세 × <strong>10%</strong> = <strong>800만 원</strong></td></tr><tr id="213474a1-0192-8080-9e47-dbb38118cde3" dir="ltr"><td id="kVz`" class=""><strong>양도차익</strong></td><td id="Zbo&lt;" class="">1억 – 2천만 원 = <strong>8천만 원</strong></td><td id="{fx^" class="" style="width:269.99998474121094px">✔ 1년 내 매도: 8천만 원<br/>✔ 1년 이상 보유: <strong>0원</strong></td></tr><tr id="213474a1-0192-80ca-873e-ffb995d3c1bb" dir="ltr"><td id="kVz`" class=""><strong>양도세</strong> (22%)</td><td id="Zbo&lt;" class="">8천만 원 × 22% = <strong>1,760만 원</strong></td><td id="{fx^" class="" style="width:269.99998474121094px">✔ 1년 내 매도: <strong>1,760만 원<br/></strong>✔ 1년 이상 보유: 없음</td></tr><tr id="213474a1-0192-80dd-a69d-d36586edd55e" dir="ltr"><td id="kVz`" class=""><strong>총세금</strong></td><td id="Zbo&lt;" class=""><strong>1,760만 원</strong></td><td id="{fx^" class="" style="width:269.99998474121094px">✔ 1년 내 매도: <strong>2,560만 원<br/></strong>✔ 1년 이상 보유: <strong>800만 원</strong></td></tr><tr id="213474a1-0192-80ed-82bc-d9fa6372f0a8" dir="ltr"><td id="kVz`" class=""><strong>연말정산</strong> 영향</td><td id="Zbo&lt;" class="">자녀 수익 200만 원↑ 시 <strong>부양가족 제외</strong></td><td id="{fx^" class="" style="width:269.99998474121094px">동일 (자녀 수익 발생 시 제외)</td></tr></tbody></table><ol type="1" id="277474a1-0192-8027-9d2b-da80a10d2f82" class="numbered-list" start="1" dir="auto"><li><strong>주식으로 증여 + 1년 이상 보유 후 매도</strong>하면 <strong>양도세 0원 + 증여세 800만 원으로 유리</strong></li></ol><ol type="1" id="27f474a1-0192-8079-bb6a-ea8743994614" class="numbered-list" start="2" dir="auto"><li><strong>현금 증여 후 자녀계좌 수익 200만 원↑이면 연말정산 부양가족 제외</strong></li></ol><p id="39d474a1-0192-80e9-af83-ff098c26b724" class="" dir="auto">
+</p><h3 id="20e474a1-0192-802f-b541-e6c64b6e7dda" class="" dir="auto">미국 ETF 직접투자 vs 한국 상장 미국 ETF</h3><table id="20e474a1-0192-808b-8235-c0569c11c1a7" class="simple-table" dir="ltr"><tbody><tr id="20e474a1-0192-80bd-a607-f6f1248b7b35" dir="ltr"><td id="C=yT" class="">항목</td><td id=";?SN" class="">🇺🇸 미국 ETF 직접투자</td><td id="}IaT" class="">🇰🇷 한국 상장 미국 ETF</td></tr><tr id="20e474a1-0192-8027-ad59-d8229852c3e7" dir="ltr"><td id="C=yT" class=""><strong>상장 시장</strong></td><td id=";?SN" class="">미국 증시 (NYSE, NASDAQ)</td><td id="}IaT" class="">한국 증시</td></tr><tr id="20e474a1-0192-800a-bb99-fdee7917f0a0" dir="ltr"><td id="C=yT" class=""><strong>통화</strong></td><td id=";?SN" class="">💵 달러 (환전 필요)</td><td id="}IaT" class="">💴 원화 (환전 불필요)</td></tr><tr id="20e474a1-0192-803f-b6ff-d280c5d29b88" dir="ltr"><td id="C=yT" class=""><strong>매매 시간</strong></td><td id=";?SN" class="">미국장 (밤, 23:30~06:00 등)</td><td id="}IaT" class="">한국장 (09:00~15:30)</td></tr><tr id="20e474a1-0192-80bd-91f4-cb38f6a88104" dir="ltr"><td id="C=yT" class=""><strong>상품 다양성</strong></td><td id=";?SN" class=""><mark class="highlight-red" data-notion-highlight="red">매우 다양 (섹터, 레버리지, 인버스 등)</mark></td><td id="}IaT" class="">제한적 (대표지수형 ETF 중심)</td></tr><tr id="20e474a1-0192-8029-85f9-c58c92e334de" dir="ltr"><td id="C=yT" class=""><strong>운용 보수</strong></td><td id=";?SN" class="">낮음 (0.03% ~ 0.2%)</td><td id="}IaT" class=""><mark class="highlight-red" data-notion-highlight="red">상대적 높음 (0.1% ~ 0.5%)</mark></td></tr><tr id="20e474a1-0192-808d-82a8-e045f2f41210" dir="ltr"><td id="C=yT" class=""><strong>양도차익 과세</strong></td><td id=";?SN" class=""><mark class="highlight-red" data-notion-highlight="red">250만 원 초과 시 22% (직접 신고)</mark></td><td id="}IaT" class=""><mark class="highlight-red" data-notion-highlight="red">15.4% 기타소득세 원천징수 (연말정산 조정 가능)</mark></td></tr><tr id="20e474a1-0192-801e-b786-e7138338f587" dir="ltr"><td id="C=yT" class=""><strong>배당소득세</strong></td><td id=";?SN" class="">미국에서 15% 원천징수</td><td id="}IaT" class="">국내 배당 15.4% 과세</td></tr><tr id="20e474a1-0192-8052-9c77-df18900bce29" dir="ltr"><td id="C=yT" class=""><strong>ISA 계좌 가능 여부</strong></td><td id=";?SN" class="">불가 (해외 ETF 불가)</td><td id="}IaT" class="">가능 (국내 상장 ETF만 허용)</td></tr><tr id="20e474a1-0192-80f0-ab6e-e70338ad2acf" dir="ltr"><td id="C=yT" class=""><strong>ISA 세제 혜택</strong></td><td id=";?SN" class="">없음</td><td id="}IaT" class="">수익 200만 원까지 비과세,<br/>초과분 9.9% 분리과세<br/>최대 2천만 원<br/> * 절세계좌 스터디 클래스 추천 </td></tr></tbody></table><p id="205474a1-0192-805b-a99f-f5540e5b4faf" class="" dir="auto">한국 주식거래소 상장 ETF</p><ul id="24c474a1-0192-803c-a397-ebc9e8f8b71d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">TIGER, ACE 시리즈는 <strong>한국에서 원화로 거래 가능</strong>, ISA 계좌에서 투자 가능</li></ul><table id="205474a1-0192-802d-809e-ccaed5b36faa" class="simple-table" dir="ltr"><tbody><tr id="205474a1-0192-8047-88ed-f6cec33f9d0b" dir="ltr"><td id="TDQi" class="">ETF 이름</td><td id="XCG]" class="" style="width:277.2854919433594px">설명</td></tr><tr id="205474a1-0192-803c-ae76-cff4def9200a" dir="ltr"><td id="TDQi" class=""><strong>TIGER S&amp;P500</strong></td><td id="XCG]" class="" style="width:277.2854919433594px">미국 대표 500대 기업에 투자 (SPY와 유사)</td></tr><tr id="205474a1-0192-8079-b94c-f243a2e2f6ce" dir="ltr"><td id="TDQi" class=""><strong>TIGER 미국나스닥100</strong></td><td id="XCG]" class="" style="width:277.2854919433594px">미국 기술주 100개 기업에 투자 (QQQ와 유사)</td></tr><tr id="205474a1-0192-80ed-82a5-f0729a63670e" dir="ltr"><td id="TDQi" class=""><strong>TIGER 미국배당성장</strong></td><td id="XCG]" class="" style="width:277.2854919433594px">배당도 주고 성장성도 있는 미국 우량주 ETF</td></tr></tbody></table><h3 id="20e474a1-0192-8093-b487-c281948fe36c" class="" dir="auto">포인트</h3><ul id="20e474a1-0192-8076-8052-dbffbeac6252" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>직접투자</strong>는 <strong>상품 다양성 + 낮은 보수</strong>가 장점<p id="20e474a1-0192-8017-8186-d0c02995fd9b" class="" dir="auto">→ 하지만 <strong>환전, 야간 거래, 세금 신고</strong> 번거로움 있음</p></li></ul><ul id="20e474a1-0192-8015-ba43-cce45915cfb1" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>국내 상장 ETF</strong>는 <strong>간편성 + 원화 거래 + 낮은 진입장벽</strong><p id="20e474a1-0192-8022-b316-fca4cbf0fc48" class="" dir="auto">→ 다만 상품 제한, 보수 및 세금 구조 다소 불리</p></li></ul><p id="27f474a1-0192-8055-9a27-dfcf391fbe5b" class="" dir="auto">
+</p><hr id="211474a1-0192-8079-b4bc-cc54aa404d79" dir="auto"/><p id="211474a1-0192-808a-8173-e57f11f3b454" class="" dir="auto">
+</p><h3 id="213474a1-0192-80e1-be49-f90a1ef12b85" class="" dir="auto">이번주 과제</h3><ol type="1" id="213474a1-0192-8055-8640-c6c0638fe236" class="numbered-list" start="1" dir="auto"><li>(필수, 카페 인증글 작성) 투자 전략 완성, 3주차 발표 준비 (이것은 진짜 본인이 투자할 방향을 적어보세요.)</li></ol><ol type="1" id="213474a1-0192-8003-a4d7-e85543495a47" class="numbered-list" start="2" dir="auto"><li>(선택, 마인드 셋) 투자거장들의 책을 읽고 글쓰기</li></ol><p id="215474a1-0192-8092-9d74-fd83eb46f21c" class="" dir="auto">
+</p><p id="277474a1-0192-8022-a880-d6743ca5fbdc" class="" dir="auto">
+</p><p id="277474a1-0192-80a4-aeb7-ef4696c74a0c" class="" dir="auto">
+</p><p id="277474a1-0192-808c-8551-c0692ad73e2e" class="" dir="auto">
+</p><p id="215474a1-0192-8079-8d4e-c4574c2f1bfa" class="" dir="auto">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

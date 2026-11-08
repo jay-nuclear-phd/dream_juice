@@ -1,0 +1,832 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>4강  투자 전략 발표와 투자 원칙 만들기</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+	/* Paint a complete callout box on every PDF page fragment. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="215474a1-0192-8037-b26f-d47eb70cc630" class="page sans"><header><h1 class="page-title" dir="auto">4강  투자 전략 발표와 투자 원칙 만들기</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://app.notion.com/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Created</th><td><time datetime="2025-06-18T00:11">June 18, 2025 12:11 AM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://app.notion.com/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><figure id="215474a1-0192-81fe-aeff-d2274b8cb6e1" class="image" data-notion-image="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg" dir="ltr"><a href="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg"><img style="width:709.9857788085938px" src="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-06-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_5.45.05.jpg"/></a></figure><h1 id="215474a1-0192-81f4-b470-ce4c52debb9a" class="" dir="auto">4강   투자 전략 발표와 투자 원칙 만들기</h1><p id="3a4474a1-0192-803c-a7b5-dbe439521de1" class="" dir="auto">
+</p><h2 id="3a4474a1-0192-80ef-b922-ece4b7713fb1" class="" dir="auto">Part 1. 투자 전략 발표 &amp; 피드백</h2><p id="3a4474a1-0192-8059-abb9-d71ff41184b6" class="" dir="auto">
+</p><p id="219474a1-0192-804f-b203-c1b7d08b77e5" class="" dir="auto">드림주스 목표</p><p id="36c474a1-0192-805e-ba1b-f15bbeee2065" class="" dir="auto">건강한 방식의 주식 투자로 경제적 여유를 만들고, 진정 원하는 군인의 삶에 집중하게 하자.</p><p id="21a474a1-0192-8021-b250-eb73d742f313" class="" dir="auto">건강한 주식 투자는 타이밍을 재지 않는다.</p><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="/icons/dialogue_gray.svg" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="21c474a1-0192-80dc-a2b8-f776c7b3862e" dir="ltr"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://app.notion.com/icons/dialogue_gray.svg"/></div><div style="width:100%"><p id="21c474a1-0192-80df-8480-f111106d84f3" class="" dir="auto">시장을 이기려는 시도 중 하나가 &#x27;마켓 타이밍&#x27;입니다. 마켓 타이밍이란 시장의 상승과 하락을 예측해 적절한 시기에 매수와 매도를 하는 전략입니다. 예를 들어, 주식 시장이 곧 하락할 것 같다고 판단되면 모든 주식을 팔고, 곧 상승할 것 같다고 판단되면 다시 주식을 사는 것입니다. 하지만 이는 매우 위험한 전략입니다.<br/>유명한 펀드 매니저인 피터 린치는 &quot;시장의 상승기간 중 가장 좋았던 50일을 놓치면 장기 투자 수익률이 대폭 감소한다&quot;고 말했습니다. <mark class="highlight-red" data-notion-highlight="red">실제로 1990년부터 2020년까지 S&amp;P 500 지수에 계속 투자했다면 연평균 9.96%의 수익을 얻었지만, 이 기간 중 최고의 10일을 놓쳤다면 수익률은 6.20%로 떨어집니다. 최고의 30일을 놓쳤다면 수익률은 3.04%에 불과합니다. </mark>이는 마켓 타이밍이 얼마나 위험한 전략인지를 잘 보여….. - &lt;미국 주식 투자를 위한 존 보글의 인덱스 펀드 철학&gt;</p></div></aside><p id="21a474a1-0192-80f4-96d5-c027e10f51f5" class="" dir="auto">
+</p><h3 id="23e474a1-0192-8043-8854-cc15d70af8c2" class="" dir="auto"><strong>건강하고 행복한 투자의 답</strong></h3><p id="23e474a1-0192-8028-8832-db94af6ac73f" class="" dir="auto">
+</p><p id="23f474a1-0192-80a0-b331-f77425804c73" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>‘믿음 &amp; 간단’</strong></mark></p><p id="23f474a1-0192-8074-8fa8-fe489cb3a585" class="" dir="auto">나의 자산 선정 → 최소 고민과 행동</p><p id="21a474a1-0192-806d-abeb-f951625f061f" class="" dir="auto"><strong>주식창 안보고도 투자할 수 있게 전략을 세워야 함.</strong></p><p id="25b474a1-0192-802e-a5bb-caebe6591dbe" class="" dir="auto">
+</p><p id="23e474a1-0192-8084-8a87-dc01c6630a59" class="" dir="auto">예시) </p><p id="21a474a1-0192-80b6-93d9-c481dc89ef2c" class="" dir="auto">자금의 50%를 매수(적정기간 분할)</p><p id="21a474a1-0192-8055-b433-c7a4d3264a7f" class="" dir="auto">남은 30%를 2년 동안 매월 적립식 매수</p><p id="21a474a1-0192-8082-b4c2-d8c5ff715d54" class="" dir="auto">남은 20%는 예비</p><p id="396474a1-0192-80b8-9d98-e897c2914f6a" class="" dir="auto">투자 전략을 완성하고, 장기간 동안 투자 전략을 지키기만 하면 된다.</p><p id="396474a1-0192-8060-9066-feb380665c99" class="" dir="auto">
+</p><p id="23e474a1-0192-8005-ac04-cb10f1521bb9" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>핵심</strong></mark></p><ol type="1" id="23e474a1-0192-8017-bb02-f0823861f672" class="numbered-list" start="1" dir="auto"><li><mark class="highlight-red" data-notion-highlight="red"><strong>장기 우상향 하는 믿는 자산이어야 함.(선행, 전략의 기초)</strong></mark><p id="21a474a1-0192-8021-8707-dfa65592a4af" class="" dir="auto"><mark class="highlight-default" data-notion-highlight="default">내가 신뢰하는 기초 지수인가?</mark></p><p id="21a474a1-0192-80a7-ab03-fedf6b81d10f" class="" dir="auto"><mark class="highlight-default" data-notion-highlight="default">어떤 일이 있어도 다시 오른다고 믿고 있는가?</mark></p></li></ol><ol type="1" id="21a474a1-0192-8000-9417-da5abbd40ec7" class="numbered-list" start="2" dir="auto"><li><mark class="highlight-red" data-notion-highlight="red"><strong>최대한 많이 매수하고 아무것도 하지 않는다.</strong></mark><p id="23e474a1-0192-80e0-9507-f20c1cff9857" class="" dir="auto">떨어지면 더 많이 산다.</p><p id="23e474a1-0192-80a0-b9a2-d02cfba19104" class="" dir="auto">오르거나 내려가도 팔지 않는다.</p><p id="23e474a1-0192-80e0-92e2-cf5c183afcff" class="" dir="auto"> </p></li></ol><h3 id="21a474a1-0192-8089-a128-cf79e6315536" class="" dir="auto">부의 복리공식 재해석</h3><p id="21a474a1-0192-8029-b6e9-ef3f7aeaa7e1" class="" dir="auto"><strong>원금 X (1+수익률) ^ 시간</strong></p><p id="23e474a1-0192-8085-968e-f8441f328c07" class="" dir="auto">
+</p><p id="21a474a1-0192-80b3-a1c8-ca3d82e91675" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>복리공식에서 가장 어려운것</strong></mark></p><p id="21a474a1-0192-8003-9bcd-d59579d7d29c" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>원금을 늘리는 것</strong></mark></p><p id="21a474a1-0192-8030-9688-f69c4abe7bf6" class="" dir="auto">사람들이 가장 못 하는 것</p><p id="21a474a1-0192-8074-993e-faeb67d2600a" class="" dir="auto">
+</p><p id="21a474a1-0192-80aa-a9a5-eb3beaa85229" class="" dir="auto">수익률 늘리는 것 = 떨어졌을 때 사면된다.</p><p id="21a474a1-0192-8058-bad6-d02bc2aab1d0" class="" dir="auto">시간 늘리는 것 = 존버하면 쉽다.</p><p id="21a474a1-0192-809d-8d2e-e47bb187cadb" class="" dir="auto">원금 늘리는 것!</p><p id="21a474a1-0192-80f2-8390-fcf504fd3e30" class="" dir="auto">내가 믿는 자산이 아니면</p><p id="25a474a1-0192-802b-8fb7-f04e6070f4f5" class="" dir="auto">많이 사지 못하거나, 떨어졌을 때 더 사지 못한다.</p><p id="21a474a1-0192-8072-a33f-ca3a9306a0f1" class="" dir="auto">
+</p><p id="21a474a1-0192-8031-b116-c1a3e76a09fa" class="" dir="auto">내가 믿는 자산을 골랐으면</p><p id="21a474a1-0192-80da-b7a2-e00b03edd0de" class="" dir="auto">그대로 투자할 줄 알아야 한다.</p><p id="21a474a1-0192-80ff-b61b-e52dbd9e843e" class="" dir="auto">손실이 나더라도 버틸 수 있어야 한다.</p><p id="21c474a1-0192-8048-8543-f423a8e8dc57" class="" dir="auto">
+</p><h3 id="21c474a1-0192-80ca-868f-ebf3d01b7bcb" class="" dir="auto">자신의 투자전략 발표</h3><p id="3a4474a1-0192-80f0-b438-d38db6a8a713" class="" dir="auto">
+</p><p id="233474a1-0192-80a0-9002-eeef9e5f4e0e" class="" dir="auto">듣는 사람은 복리공식</p><p id="233474a1-0192-8013-8843-da15d1335b04" class="" dir="auto">‘<strong>원금 X (1+수익률) ^ 시간’ 연계해 생각해 보세요.</strong></p><p id="3a4474a1-0192-80f0-b4d7-c95e7a6b18b3" class="" dir="auto">
+</p><p id="23e474a1-0192-80b6-9ae7-fa8786faba82" class="" dir="auto">
+</p><h2 id="23e474a1-0192-808f-a178-c00bb111b917" class="" dir="auto">Part 2. 투자 원칙 만들기</h2><p id="3a4474a1-0192-8048-b789-d04841e70ff2" class="" dir="auto">
+</p><p id="3a4474a1-0192-80bd-9f09-cd1b061c0d07" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red"><strong>투자 전략</strong></mark>은 행동하게 하고, <mark class="highlight-red" data-notion-highlight="red"><strong>투자 원칙</strong></mark>은 자신을 통제할 수 있게 함.</p><p id="3a4474a1-0192-80d7-9c67-f386c5d1e304" class="" dir="auto">투자 원칙은 욕심과 공포를 느끼는 상황에서도 투자 전략을 유지할 수 있게 함.</p><p id="3a4474a1-0192-80ca-8826-eebc2cc83520" class="" dir="auto">
+</p><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="/icons/dialogue_gray.svg" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="250474a1-0192-80a8-841b-c052b423e091" dir="ltr"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://app.notion.com/icons/dialogue_gray.svg"/></div><div style="width:100%"><p id="250474a1-0192-8082-95dd-d3e79babe4dc" class="" dir="auto">나만의 건강하고 행복한 투자 10계명(예시)</p><ol type="1" id="27e474a1-0192-80fb-b8ee-d072e1e83ba0" class="numbered-list" start="1" dir="auto"><li>장기 우상향 하는 우량 자산만 투자한다.</li></ol><ol type="1" id="27e474a1-0192-80d4-a311-eb85da82863b" class="numbered-list" start="2" dir="auto"><li>지수 ETF로 종목 위험을 줄인다.</li></ol><ol type="1" id="27e474a1-0192-8044-b8b1-cb7ba39d5e59" class="numbered-list" start="3" dir="auto"><li>전략은 단순하게 설계한다.</li></ol><ol type="1" id="27e474a1-0192-80dc-a559-f618f596b2b4" class="numbered-list" start="4" dir="auto"><li>부의 공식을 항상 점검한다.<em>(원금 × (1+수익률)^시간)</em></li></ol><ol type="1" id="27e474a1-0192-801b-94a7-eebf3cdbe08c" class="numbered-list" start="5" dir="auto"><li>자신이 믿는 자산에만 투자한다.</li></ol><ol type="1" id="27e474a1-0192-8045-b3b4-fedf506b1a49" class="numbered-list" start="6" dir="auto"><li>세운 원칙은 반드시 지킨다.</li></ol><ol type="1" id="27e474a1-0192-805f-84e1-f7f91a4e465f" class="numbered-list" start="7" dir="auto"><li>공포와 욕심을 경계한다.</li></ol><ol type="1" id="27e474a1-0192-8029-bb9a-f4fcdeff9097" class="numbered-list" start="8" dir="auto"><li>매매는 최소화한다.</li></ol><ol type="1" id="27e474a1-0192-807c-99f0-ca1caec5a57c" class="numbered-list" start="9" dir="auto"><li>현금비율 관리로 리스크를 막는다.</li></ol><ol type="1" id="27e474a1-0192-8052-ab46-f2bc78a74a60" class="numbered-list numbered-list-digits-2" start="10" dir="auto"><li>투자는 삶을 위한 수단임을 잊지 않는다.</li></ol></div></aside><p id="3a4474a1-0192-80ac-a8cf-c6f7483b2017" class="" dir="auto">
+</p><p id="3a4474a1-0192-80d5-990a-d41b289faa8e" class="" dir="auto">
+</p><hr id="3a4474a1-0192-80ac-9e1b-c7d62ad3fc4e" dir="auto"/><p id="3a4474a1-0192-80f6-9e5d-f2ec057e9b26" class="" dir="auto">
+</p><h3 id="3a4474a1-0192-80eb-88db-f09a1cd507c3" class="" dir="auto">이번주 과제</h3><ol type="1" id="3a4474a1-0192-8086-b0b1-cbd63be0f848" class="numbered-list" start="1" dir="auto"><li>(필수, 카페 인증글 작성) 투자 원칙 완성, 5주차 발표 준비</li></ol><ol type="1" id="3a4474a1-0192-8077-99dc-f60bd303a6d3" class="numbered-list" start="2" dir="auto"><li>(선택, 마인드 셋) 투자거장들의 책을 읽고 글쓰기</li></ol><p id="3a4474a1-0192-80b1-a62e-f2e9dc5166b9" class="" dir="auto">
+</p><p id="3a4474a1-0192-8019-bf00-eaa16bb3cab9" class="" dir="auto">
+</p><p id="3a4474a1-0192-80d6-af94-c5d10fa2e858" class="" dir="auto">
+</p><p id="3a4474a1-0192-809b-8137-e2dcedabab08" class="" dir="auto">
+</p><p id="3a4474a1-0192-8034-9b02-ee23f3982007" class="" dir="auto">
+</p><p id="3a4474a1-0192-8092-a8cb-e6d03d8926a6" class="" dir="auto">
+</p><p id="23e474a1-0192-8015-be72-c768f284ed02" class="" dir="auto">
+</p><p id="21c474a1-0192-80b6-903b-ccb63550f8bc" class="" dir="auto">
+</p><hr id="21c474a1-0192-8041-9f1e-c1533dd5c569" dir="auto"/><h3 id="21c474a1-0192-80b1-944c-c1cea356f824" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">미국 주식 시장 거래 시간 정리</mark></h3><table id="21c474a1-0192-8024-938c-e392726526ca" class="simple-table" dir="ltr"><tbody><tr id="21c474a1-0192-80bc-9f61-e16b4b0eae4b" dir="ltr"><td id="F\^}" class="" style="width:67.44175720214844px">구분</td><td id="w_BW" class="" style="width:173.20880126953125px">한국 시간 기준</td><td id="qSc;" class="" style="width:130.52272033691406px">영어 용어</td><td id="Kr&lt;P" class="" style="width:252.99998474121094px">특징</td></tr><tr id="21c474a1-0192-8054-a527-dba71b633b9d" dir="ltr"><td id="F\^}" class="" style="width:67.44175720214844px"><strong>프리장</strong></td><td id="w_BW" class="" style="width:173.20880126953125px">오후 5시 ~ 오후 10시 30분</td><td id="qSc;" class="" style="width:130.52272033691406px">Pre-market</td><td id="Kr&lt;P" class="" style="width:252.99998474121094px">정규장 전 거래. 거래량 적고 변동성 큼</td></tr><tr id="21c474a1-0192-808a-a261-e0d2cb4e9fa7" dir="ltr"><td id="F\^}" class="" style="width:67.44175720214844px"><strong>본장</strong></td><td id="w_BW" class="" style="width:173.20880126953125px">오후 10시 30분 ~ 다음날 오전 5시</td><td id="qSc;" class="" style="width:130.52272033691406px">Regular market / Cash session</td><td id="Kr&lt;P" class="" style="width:252.99998474121094px"><strong>가장 거래량 많고 신뢰도 높은 시장</strong></td></tr><tr id="21c474a1-0192-80c7-95b2-ecc643fcbc6d" dir="ltr"><td id="F\^}" class="" style="width:67.44175720214844px"><strong>애프터장</strong></td><td id="w_BW" class="" style="width:173.20880126953125px">오전 5시 ~ 오전 9시</td><td id="qSc;" class="" style="width:130.52272033691406px">After-hours / Post-market</td><td id="Kr&lt;P" class="" style="width:252.99998474121094px">정규장 이후 거래.<br/>기업 실적 발표 영향 큼</td></tr></tbody></table><p id="21c474a1-0192-80df-a925-f591980249a2" class="" dir="auto"><strong>프리장 (Pre-market)</strong></p><ul id="21c474a1-0192-809e-97e0-db58ebcd683b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">정규장 시작 전 거래 가능</li></ul><ul id="21c474a1-0192-8096-83fe-f688a8b82794" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>호재/악재 뉴스 반영이 빠르게 나타남</strong></li></ul><ul id="21c474a1-0192-8099-b522-d19caa9747f1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">유동성 낮아 <strong>슬리피지(체결 미스) 주의</strong></li></ul><p id="21c474a1-0192-80c1-a2bd-f4578980d1b0" class="" dir="auto">
+</p><p id="21c474a1-0192-800d-b9c4-cc8a666b3a48" class="" dir="auto"><strong>본장 (Regular market)</strong></p><ul id="21c474a1-0192-803b-b6d5-f90913bfaf51" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>거래량 가장 많고 기관, 펀드도 거래 참여</strong></li></ul><ul id="21c474a1-0192-80a5-92b5-f3923d1fd594" class="bulleted-list" dir="auto"><li style="list-style-type:disc">차트상 의미 있는 흐름은 대부분 본장에서 발생</li></ul><ul id="21c474a1-0192-8055-aeeb-e50fb8761894" class="bulleted-list" dir="auto"><li style="list-style-type:disc">기술적 분석과 거래 시 가장 신뢰할 수 있는 구간</li></ul><p id="21c474a1-0192-8097-bd3f-f8fa0eefb501" class="" dir="auto">
+</p><p id="21c474a1-0192-80d9-b2b2-f794b2986f2f" class="" dir="auto"><strong>애프터장 (After-hours)</strong></p><ul id="21c474a1-0192-807d-a2e8-f392a69ef404" class="bulleted-list" dir="auto"><li style="list-style-type:disc">정규장 종료 후 추가 거래 시간</li></ul><ul id="21c474a1-0192-80ce-9e15-e1ff2b97f722" class="bulleted-list" dir="auto"><li style="list-style-type:disc">실적 발표, 가이던스 이슈가 많아 <strong>깜짝 변동</strong> 자주 발생</li></ul><ul id="21c474a1-0192-8070-a82e-f356bbdcff90" class="bulleted-list" dir="auto"><li style="list-style-type:disc">거래량 적어 가격 급등락 빈번</li></ul><p id="23e474a1-0192-801a-915c-e6f0e7f2ea8c" class="" dir="auto">
+</p><p id="21c474a1-0192-801a-8bf0-cf9ff17ce082" class="" dir="auto">
+</p><hr id="21c474a1-0192-80bb-8857-c1844eefffa4" dir="auto"/><h3 id="21c474a1-0192-802c-861c-d8d0e92586b3" class="" dir="auto"><mark class="highlight-red" data-notion-highlight="red">해외주식 거래 수수료</mark></h3><blockquote id="21c474a1-0192-8034-bf20-d5d23967022f" class="" dir="auto">해외주식을 사고팔 때 증권사가 받는 수수료</blockquote><p id="21c474a1-0192-8048-ac5b-d6bafabe7755" class="" dir="auto">
+</p><ol type="1" id="21c474a1-0192-806f-bd61-fefe33f436e2" class="numbered-list" start="1" dir="auto"><li><strong>매매 수수료</strong> (거래금액 기준)<ul id="21c474a1-0192-802e-a4da-ecf6aa3c41a3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">증권사마다 다름 (보통 <strong>0.07% ~ 0.25%</strong>)</li></ul><ul id="21c474a1-0192-805c-a093-c69a1f069f74" class="bulleted-list" dir="auto"><li style="list-style-type:disc">이벤트 시 <strong>0.09% 이하</strong> 혹은 <strong>평생 0.07%</strong> 등 프로모션 많음.</li></ul></li></ol><div id="21c474a1-0192-80c4-9b40-fb7303796a82" class="column-list" data-notion-column-list="" dir="auto"><div id="21c474a1-0192-8076-b529-f3bef16dfc33" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="21c474a1-0192-8061-98be-d9e53f82e9f5" class="image" data-notion-image="IMG_9133.jpeg" dir="ltr"><a href="IMG_9133.jpeg"><img style="width:709.9857788085938px" src="IMG_9133.jpeg"/></a></figure></div><div id="21c474a1-0192-80a4-a981-ef7f62f3ad99" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><figure id="21c474a1-0192-80bc-9a9c-e2a2f467809e" class="image" data-notion-image="IMG_9134.jpeg" dir="ltr"><a href="IMG_9134.jpeg"><img style="width:709.9857788085938px" src="IMG_9134.jpeg"/></a></figure></div></div><ol type="1" id="21c474a1-0192-8023-a01e-cb132f83b72d" class="numbered-list" start="2" dir="auto"><li><strong>환전 수수료</strong><ul id="21c474a1-0192-8089-bfe1-c09347ff2789" class="bulleted-list" dir="auto"><li style="list-style-type:disc">환전수수료 = 기준 환율보다 비싸게 팔고 싸게 사는 <strong>스프레드(이윤구간)</strong><p id="21c474a1-0192-802a-b74d-fd87d13a6a70" class="" dir="auto">예: 1달러 기준 스프레드(이윤구간)가 20원 → 100% 우대라면 이 20원을 다 깎아줌!</p></li></ul><ul id="21c474a1-0192-80a0-87c5-d07d0a423a97" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>모바일 앱에서 90~100% 우대</strong> 가능</li></ul><ul id="21c474a1-0192-8082-8626-dda97544c204" class="bulleted-list" dir="auto"><li style="list-style-type:disc">일부 증권사는 <strong>자동 환전 설정 시 우대율 낮을 수도</strong> 있으니 직접 환전하는 게 유리</li></ul></li></ol><p id="21c474a1-0192-8084-af6b-df6fd86b1c11" class="" dir="auto">
+</p><h3 id="21c474a1-0192-8061-8d28-ed71e07199c5" class="" dir="auto">수수료 요약</h3><p id="21c474a1-0192-807b-b916-f7fd6dfd2450" class="" dir="auto">1,000만 원 환전 / 환율 1,350원 / 환전 우대 95% / 수수료 0.07%</p><ul id="21c474a1-0192-8005-a7fc-ec7a209b6620" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>환전 수수료 :</strong><p id="21c474a1-0192-8049-a357-cad065841c0f" class="" dir="auto">10,000,000원 ÷ 1,350원/달러 ≈ <strong>7,407달러</strong></p><p id="21c474a1-0192-80f7-8c1d-cd885be9dc9f" class="" dir="auto">스프레드 20원 × (100% - 95%) = <strong>1원/달러 → </strong>1원 × 7,407달러 = <strong>7,407원</strong> </p></li></ul><ul id="21c474a1-0192-805e-86a0-ea4a9951eadd" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>거래 수수료 : </strong><p id="21c474a1-0192-8032-a952-d9c4a83e4272" class="" dir="auto">7,407달러 × 0.07% = <strong>약 5.19달러 →</strong> <strong>7,006원</strong></p></li></ul><ul id="21c474a1-0192-80e3-b7a4-cf53784dd924" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>수수료 합계 : 약 14,400원</strong></li></ul><p id="21c474a1-0192-8083-9da9-fe42b6c6ff0d" class="" dir="auto">
+</p><h3 id="21c474a1-0192-805f-9780-cfa3cd5e16fd" class="" dir="auto">매수와 매도를 자주 할 수록 거래 수수료는 늘어난다.</h3><p id="233474a1-0192-8098-ba30-e606750f6d47" class="" dir="auto">
+</p><p id="21c474a1-0192-809a-93be-dcd6993d09ae" class="" dir="auto">
+</p><hr id="233474a1-0192-80bc-adf4-c3f175b34ab0" dir="auto"/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
