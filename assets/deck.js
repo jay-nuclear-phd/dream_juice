@@ -20,6 +20,8 @@
   let state = {};               // oid -> { x, y, r, s, html }
   const orig = {};              // oid -> { x, y, r, s, html }
   const undoStack = [];
+  const COLORS = [["#ff3b30", "빨강"], ["#ffcc00", "노랑"], ["#34c759", "초록"], ["#0a84ff", "파랑"], ["#1d1916", "검정"]];
+  let tool = null;              // null | "pointer" | "laser" | "pen"
 
   /* ---------- 객체 수집 ---------- */
   const objects = [];
@@ -119,6 +121,7 @@
     if (i === cur && slides[i].classList.contains("active")) return;
     endTextEdit(); select(null);
     slides[cur].classList.remove("active");
+    clearLaser(true);
     cur = i;
     slides[cur].classList.add("active");
     ui.count.textContent = cur + 1 + " / " + slides.length;
@@ -145,6 +148,13 @@
       '<button data-act="prev" title="이전 (←)">◀</button>' +
       '<span class="count"></span>' +
       '<button data-act="next" title="다음 (→)">▶</button>' +
+      '<span class="sep tool-grp"></span>' +
+      '<button class="tool-grp" data-act="tool" data-tool="pointer" title="레이저 포인터 (L)">포인터</button>' +
+      '<button class="tool-grp" data-act="tool" data-tool="laser" title="레이저 펜: 그린 선이 잠시 뒤 사라짐 (K)">레이저펜</button>' +
+      '<button class="tool-grp" data-act="tool" data-tool="pen" title="펜: 그린 선이 남음 (P)">펜</button>' +
+      '<span class="colors tool-only">' + COLORS.map((c) =>
+        '<button class="sw" data-act="color" data-c="' + c[0] + '" style="--c:' + c[0] + '" title="' + c[1] + '" aria-label="' + c[1] + '"></button>').join("") + "</span>" +
+      '<button class="tool-only" data-act="clearInk" title="이 슬라이드의 펜 자국 지우기 (C)">지우기</button>' +
       '<span class="sep"></span>' +
       '<button data-act="full" title="전체화면 (F)">전체화면</button>' +
       '<button data-act="edit" title="편집 모드 (E)">편집</button>' +
@@ -163,6 +173,12 @@
       "<tr><td>화면 오른쪽·왼쪽 클릭</td><td>다음 / 이전</td></tr>" +
       "<tr><td><kbd>F</kbd></td><td>전체화면</td></tr>" +
       "<tr><td><kbd>H</kbd> 또는 <b>목록</b> 버튼</td><td>강의 목록(첫 화면)으로</td></tr>" +
+      "</table><h4>가리키기 · 그리기</h4><table>" +
+      "<tr><td><kbd>L</kbd> 포인터</td><td>레이저 포인터로 가리키기</td></tr>" +
+      "<tr><td><kbd>K</kbd> 레이저펜</td><td>누른 채 그리면 잠시 뒤 사라짐</td></tr>" +
+      "<tr><td><kbd>P</kbd> 펜</td><td>누른 채 그리면 계속 남음</td></tr>" +
+      "<tr><td><kbd>C</kbd> 지우기 · <kbd>Ctrl</kbd>+<kbd>Z</kbd></td><td>이 슬라이드 펜 자국 지우기 · 마지막 획 지우기</td></tr>" +
+      "<tr><td><kbd>Esc</kbd> 또는 같은 버튼</td><td>도구 끄기</td></tr>" +
       "</table><h4>편집 (<kbd>E</kbd>로 켜고 끄기)</h4><table>" +
       "<tr><td>클릭 후 드래그</td><td>개체 이동 (방향키: 1px, Shift+방향키: 10px)</td></tr>" +
       "<tr><td>위쪽 동그라미 드래그</td><td>회전 (Shift: 15° 단위)</td></tr>" +
@@ -177,7 +193,7 @@
       const b = e.target.closest("button");
       if (!b) return;
       e.stopPropagation();
-      actions[b.dataset.act]();
+      actions[b.dataset.act](b);
       b.blur();
     });
     const help = root.querySelector(".deck-help");
@@ -220,6 +236,9 @@
       toast("편집 내용을 모두 지웠습니다 (Ctrl+Z로 되돌리기)");
     },
     export: exportHTML,
+    tool(b) { setTool(tool === b.dataset.tool ? null : b.dataset.tool); },
+    color(b) { setColor(b.dataset.c); },
+    clearInk,
     help() { ui.help.classList.toggle("show"); },
   };
 
@@ -233,19 +252,21 @@
 
   // 발표 중 마우스가 멈추면 툴바 숨김
   let idleTimer;
-  function wake() {
+  function wake(e) {
+    if (tool && e && e.clientY < window.innerHeight - 110 && ui.bar.classList.contains("idle")) return;
     ui.bar.classList.remove("idle");
     document.body.style.cursor = "";
     clearTimeout(idleTimer);
     if (!editing) idleTimer = setTimeout(() => {
       ui.bar.classList.add("idle");
-      if (document.fullscreenElement) document.body.style.cursor = "none";
+      if (document.fullscreenElement && !tool) document.body.style.cursor = "none";
     }, 2500);
   }
   window.addEventListener("mousemove", wake);
 
   /* ---------- 편집 모드 ---------- */
   function setEditing(on) {
+    if (on && tool) setTool(null, true);
     editing = on;
     document.body.classList.toggle("editing", on);
     ui.editBtn.classList.toggle("on", on);
@@ -382,6 +403,7 @@
 
   /* 발표 모드: 화면 클릭으로 넘기기 */
   stage.addEventListener("click", (e) => {
+    if (tool === "laser" || tool === "pen") { e.preventDefault(); return; }
     if (editing || e.target.closest("a")) return;
     const x = e.clientX / window.innerWidth;
     if (x > 0.35) next(); else prev();
@@ -389,7 +411,7 @@
 
   /* 터치 스와이프 */
   let touch = null;
-  stage.addEventListener("touchstart", (e) => { if (!editing) touch = e.touches[0]; }, { passive: true });
+  stage.addEventListener("touchstart", (e) => { touch = editing || tool === "laser" || tool === "pen" ? null : e.touches[0]; }, { passive: true });
   stage.addEventListener("touchend", (e) => {
     if (!touch || editing) return;
     const dx = e.changedTouches[0].clientX - touch.clientX;
@@ -405,7 +427,11 @@
     }
     if (e.target.closest && e.target.closest("input, textarea, [contenteditable]")) return;
     const mod = e.ctrlKey || e.metaKey;
-    if (mod && e.key.toLowerCase() === "z") { if (editing) { e.preventDefault(); undo(); } return; }
+    if (mod && e.key.toLowerCase() === "z") {
+      if (editing) { e.preventDefault(); undo(); }
+      else if (tool) { e.preventDefault(); undoInk(); }
+      return;
+    }
     if (mod || e.altKey) return;
 
     if (editing && selected && e.key.startsWith("Arrow")) {
@@ -421,6 +447,7 @@
     if (e.key === "Escape") {
       if (ui.help.classList.contains("show")) return ui.help.classList.remove("show");
       if (selected) return select(null);
+      if (tool) return setTool(null);
       return;
     }
     switch (e.key) {
@@ -433,6 +460,10 @@
       case "f": case "F": actions.full(); break;
       case "h": case "H": actions.home(); break;
       case "e": case "E": actions.edit(); break;
+      case "l": case "L": setTool(tool === "pointer" ? null : "pointer"); break;
+      case "k": case "K": setTool(tool === "laser" ? null : "laser"); break;
+      case "p": case "P": setTool(tool === "pen" ? null : "pen"); break;
+      case "c": case "C": clearInk(); break;
       case "?": actions.help(); break;
     }
   });
@@ -442,7 +473,8 @@
     endTextEdit();
     const doc = document.documentElement.cloneNode(true);
     const kill = (sel) => doc.querySelectorAll(sel).forEach((n) => n.remove());
-    kill("#deck-ui"); kill(".obj-overlay");
+    kill("#deck-ui"); kill(".obj-overlay"); kill(".ink-layer");
+    doc.querySelector("body").classList.remove("tool-on", "tool-pointer", "tool-laser", "tool-pen");
     doc.querySelector("body").classList.remove("editing", "dragging");
     doc.querySelector("body").style.cursor = "";
     if (!doc.querySelector("body").getAttribute("class")) doc.querySelector("body").removeAttribute("class");
@@ -467,6 +499,137 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     toast("index.html 다운로드 — 저장소의 이 강의 폴더에 덮어쓰고 커밋하세요");
   }
+
+  /* ---------- 레이저 포인터 / 레이저 펜 / 펜 ---------- */
+  const INK_KEY = "deck-ink:" + deckId;
+  const SVGNS = "http://www.w3.org/2000/svg";
+  let color = COLORS[0][0];
+  let ink = {};                 // 슬라이드 번호 -> [{ c, w, p: [[x, y], ...] }]
+  let stroke = null, laserTimer = null;
+  const inkLayers = slides.map((s) => {
+    const svg = document.createElementNS(SVGNS, "svg");
+    svg.setAttribute("class", "ink-layer");
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    s.appendChild(svg);
+    return svg;
+  });
+  const dot = document.createElement("div");
+  dot.className = "laser-dot";
+  ui.root.appendChild(dot);
+
+  function setTool(t, quiet) {
+    if (t && editing) setEditing(false);
+    tool = t;
+    document.body.classList.remove("tool-on", "tool-pointer", "tool-laser", "tool-pen");
+    if (t) document.body.classList.add("tool-on", "tool-" + t);
+    ui.bar.querySelectorAll('[data-act="tool"]').forEach((b) => b.classList.toggle("on", b.dataset.tool === t));
+    if (t !== "pointer") dot.classList.remove("show");
+    if (!quiet) toast(t ? { pointer: "레이저 포인터", laser: "레이저 펜: 그린 선이 잠시 뒤 사라집니다", pen: "펜: 그린 선이 남습니다 (C: 지우기)" }[t] + " · Esc로 끄기" : "도구 끔");
+  }
+  function setColor(c) {
+    color = c;
+    document.body.style.setProperty("--pen", c);
+    ui.bar.querySelectorAll(".sw").forEach((b) => b.classList.toggle("on", b.dataset.c === c));
+  }
+  setColor(color);
+
+  function toLocal(e) {
+    const r = stage.getBoundingClientRect();
+    return [round(((e.clientX - r.left) * W) / r.width, 1), round(((e.clientY - r.top) * H) / r.height, 1)];
+  }
+  function pathD(p) {
+    if (p.length === 1) return "M" + p[0][0] + " " + p[0][1] + "l0.01 0";
+    let d = "M" + p[0][0] + " " + p[0][1];
+    for (let i = 1; i < p.length - 1; i++) {
+      d += "Q" + p[i][0] + " " + p[i][1] + " " + round((p[i][0] + p[i + 1][0]) / 2, 1) + " " + round((p[i][1] + p[i + 1][1]) / 2, 1);
+    }
+    const l = p[p.length - 1];
+    return d + "L" + l[0] + " " + l[1];
+  }
+  function makePath(s, laser) {
+    const el = document.createElementNS(SVGNS, "path");
+    el.setAttribute("d", pathD(s.p));
+    el.setAttribute("stroke", s.c);
+    el.setAttribute("stroke-width", s.w);
+    if (laser) { el.setAttribute("class", "laser"); el.style.setProperty("--c", s.c); }
+    return el;
+  }
+  function renderInk(i) {
+    inkLayers[i].querySelectorAll("path:not(.laser)").forEach((n) => n.remove());
+    (ink[i] || []).forEach((s) => inkLayers[i].appendChild(makePath(s, false)));
+  }
+  function loadInk() {
+    try {
+      const data = JSON.parse(localStorage.getItem(INK_KEY) || "null");
+      if (!data || data.base !== baseHash) return;
+      ink = data.ink || {};
+      Object.keys(ink).forEach((i) => inkLayers[i] && renderInk(+i));
+    } catch (e) { /* ignore */ }
+  }
+  function saveInk() {
+    try {
+      Object.keys(ink).forEach((i) => { if (!ink[i].length) delete ink[i]; });
+      if (Object.keys(ink).length) localStorage.setItem(INK_KEY, JSON.stringify({ base: baseHash, ink }));
+      else localStorage.removeItem(INK_KEY);
+    } catch (e) { /* ignore */ }
+  }
+  function clearInk() {
+    clearLaser(true);
+    if (!(ink[cur] || []).length) return toast("이 슬라이드에는 지울 펜 자국이 없습니다");
+    delete ink[cur]; renderInk(cur); saveInk();
+    toast("이 슬라이드의 펜 자국을 지웠습니다");
+  }
+  function undoInk() {
+    if (!(ink[cur] || []).length) return toast("지울 펜 자국이 없습니다");
+    ink[cur].pop(); renderInk(cur); saveInk();
+  }
+  function clearLaser(now) {
+    clearTimeout(laserTimer);
+    const paths = stage.querySelectorAll(".ink-layer path.laser");
+    if (now) return paths.forEach((n) => n.remove());
+    paths.forEach((n) => n.classList.add("fade"));
+    laserTimer = setTimeout(() => paths.forEach((n) => n.remove()), 700);
+  }
+
+  stage.addEventListener("pointerdown", (e) => {
+    if ((tool !== "laser" && tool !== "pen") || e.button !== 0) return;
+    e.preventDefault();
+    clearTimeout(laserTimer);
+    stage.querySelectorAll(".ink-layer path.laser.fade").forEach((n) => n.remove());
+    const s = { c: color, w: tool === "pen" ? 4 : 5, p: [toLocal(e)] };
+    const el = makePath(s, tool === "laser");
+    inkLayers[cur].appendChild(el);
+    stroke = { s, el, laser: tool === "laser", pid: e.pointerId };
+    try { stage.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+  });
+  stage.addEventListener("pointermove", (e) => {
+    if (tool === "pointer") {
+      dot.classList.add("show");
+      dot.style.transform = "translate(" + e.clientX + "px," + e.clientY + "px)";
+    }
+    if (!stroke || e.pointerId !== stroke.pid) return;
+    const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+    for (const ev of evs.length ? evs : [e]) {
+      const pt = toLocal(ev), last = stroke.s.p[stroke.s.p.length - 1];
+      if (Math.hypot(pt[0] - last[0], pt[1] - last[1]) >= 1) stroke.s.p.push(pt);
+    }
+    stroke.el.setAttribute("d", pathD(stroke.s.p));
+  });
+  const endStroke = (e) => {
+    if (!stroke || e.pointerId !== stroke.pid) return;
+    if (stroke.laser) {
+      clearTimeout(laserTimer);
+      laserTimer = setTimeout(() => clearLaser(false), 1500);
+    } else {
+      (ink[cur] = ink[cur] || []).push(stroke.s);
+      saveInk();
+    }
+    stroke = null;
+  };
+  stage.addEventListener("pointerup", endStroke);
+  stage.addEventListener("pointercancel", endStroke);
+  stage.addEventListener("pointerleave", () => dot.classList.remove("show"));
+  loadInk();
 
   /* ---------- 유틸 ---------- */
   function round(n, d) { const p = Math.pow(10, d || 1); return Math.round(n * p) / p; }
