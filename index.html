@@ -11,19 +11,23 @@
   body { margin:0; background:var(--bg); color:var(--ink); font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif; word-break:keep-all; }
   header { background:linear-gradient(110deg,#eeb05a,#f2c873 45%,#f6dd8c); padding:56px 16px 48px; }
   .wrap { max-width:880px; margin:0 auto; padding:0 16px; }
+  header { overflow:hidden; }
+  header .wrap { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .logo { flex:none; height:170px; width:auto; margin:-24px 8px -36px 0; transform:rotate(4deg); filter:drop-shadow(0 6px 14px rgba(150,60,30,.18)); }
+  @media (max-width:560px) { .logo { height:96px; margin:-8px 0 -20px; } }
   .pill { display:inline-block; background:var(--red); color:#fff; font-weight:700; border-radius:999px; padding:4px 14px; font-size:15px; }
   h1 { font-size:clamp(28px,5vw,42px); margin:14px 0 0; letter-spacing:-0.02em; }
-  main { padding:32px 0 64px; }
+  main.wrap { padding-top:44px; padding-bottom:64px; }
   ol { list-style:none; margin:0; padding:0; display:grid; gap:12px; }
   a.item { display:flex; gap:18px; align-items:center; background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px 22px; color:inherit; text-decoration:none; transition:transform .15s, box-shadow .15s; }
   a.item:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(60,40,20,.1); }
   .no { flex:none; width:48px; height:48px; border-radius:50%; background:var(--red); color:#fff; display:grid; place-items:center; font-weight:800; }
-  .t { font-size:19px; font-weight:700; }
-  .s { font-size:14px; color:var(--soft); margin-top:2px; }
+  .t { display:block; font-size:19px; font-weight:700; }
+  .s { display:block; font-size:14px; color:var(--soft); margin-top:4px; }
 </style>
 </head>
 <body>
-<header><div class="wrap"><span class="pill">드림주스</span><h1>꿈꾸는 군인의 건강한 주식스터디</h1></div></header>
+<header><div class="wrap"><div><span class="pill">드림주스</span><h1>꿈꾸는 군인의 건강한 주식스터디</h1></div><img class="logo" src="assets/juice.png" alt="" width="380" height="480"></div></header>
 <main class="wrap">
   <ol>
     <li><a class="item" href="lecture1/index.html"><span class="no">1</span><span><span class="t">미국주식 안전하게 투자하는 방법</span><span class="s">주식 투자가 위험하다는 착각 · 왜 미국 주식인가 · 미국 ETF 제대로 이해하기</span></span></a></li>
