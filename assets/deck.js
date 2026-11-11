@@ -404,7 +404,8 @@
   /* 발표 모드: 화면 클릭으로 넘기기 */
   stage.addEventListener("click", (e) => {
     if (tool === "laser" || tool === "pen") { e.preventDefault(); return; }
-    if (editing || e.target.closest("a")) return;
+    if (editing) { if (e.target.closest("a")) e.preventDefault(); return; } // 편집 중엔 링크로 이동하지 않음
+    if (e.target.closest("a")) return;
     const x = e.clientX / window.innerWidth;
     if (x > 0.35) next(); else prev();
   });
