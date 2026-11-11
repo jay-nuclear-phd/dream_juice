@@ -17,7 +17,7 @@ assets/deck.js        슬라이드 엔진(넘기기, 편집, 포인터/펜)
 assets/banner.jpg     드림주스 배너(각 강의 표지에서 사용)
 assets/juice.png      배너에서 주스·사과 그림만 따낸 투명 PNG(첫 화면 헤더)
 lecture1/ lecture2/ lecture4/ lecture5/
-  index.html          강의별 슬라이드(1강 34장, 2강 31장, 4강 20장, 5강 26장)
+  index.html          강의별 슬라이드(1강 36장, 2강 31장, 4강 20장, 5강 26장)
   img/                그 강의에서 쓰는 이미지(ASCII 파일명)
 1강/ 2강/ 4강/ 5강/    노션 export 원본. 읽기 전용 자료이므로 수정하지 않는다
 .nojekyll             GitHub Pages의 Jekyll 처리 끄기
