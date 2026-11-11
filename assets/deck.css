@@ -202,7 +202,7 @@ body {
 .deck-bar button:hover { background: rgba(255,255,255,.14); }
 .deck-bar button:focus-visible { outline: 2px solid var(--orange); }
 .deck-bar button.on { background: var(--red); }
-.deck-bar .count { font-size: 14px; padding: 0 10px; font-variant-numeric: tabular-nums; opacity: .85; min-width: 64px; text-align: center; }
+.deck-bar .count { font-size: 14px; padding: 0 10px; font-variant-numeric: tabular-nums; opacity: .85; min-width: 64px; text-align: center; white-space: nowrap; }
 .deck-bar .sep { width: 1px; height: 20px; background: rgba(255,255,255,.2); margin: 0 4px; }
 .deck-bar .edit-only { display: none; }
 body.editing .deck-bar .edit-only { display: inline-block; }
